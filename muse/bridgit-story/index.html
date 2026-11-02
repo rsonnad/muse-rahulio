@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guess My Story — One Warsaw Night, Told by a Phone</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --ink:#f4f1ea; --dim:rgba(244,241,234,.72); --faint:rgba(244,241,234,.45); }
+  body { font-family: Georgia, 'Times New Roman', serif; background:#0b0b10; color:var(--ink);
+         -webkit-font-smoothing: antialiased; }
+  .sans { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+  .hero { padding: 84px 22px 54px; text-align:center;
+          background: radial-gradient(1100px 480px at 50% -80px, rgba(219,39,119,.35), transparent 60%),
+                      radial-gradient(900px 420px at 85% 0, rgba(109,40,217,.35), transparent 55%),
+                      linear-gradient(180deg, #17111f, #0b0b10); }
+  .kicker { font-size:12px; letter-spacing:4px; font-weight:700; color:#f9a8d4; text-transform:uppercase; }
+  h1 { font-size: clamp(44px, 9vw, 84px); line-height:1.02; font-weight:800; margin:18px auto 14px; max-width: 900px;
+       font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; letter-spacing:-1px;
+       background: linear-gradient(92deg,#fda4af,#f9a8d4 30%,#c4b5fd 65%,#7dd3fc);
+       -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p { font-size: clamp(16px, 2.6vw, 20px); color: var(--dim); max-width: 640px; margin: 0 auto; line-height:1.6; font-style: italic; }
+  .stats { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:34px auto 6px; max-width:860px; padding: 0 16px;}
+  .stat { font-family: system-ui, sans-serif; background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.13);
+          border-radius: 999px; padding: 9px 16px; font-size: 14px; }
+  .stat b { color:#fcd34d; }
+  main { max-width: 880px; margin: 0 auto; padding: 10px 20px 30px; }
+  section { margin: 64px 0 0; }
+  .chnum { font-family: system-ui, sans-serif; font-size:12px; font-weight:800; letter-spacing:3px; color:#7dd3fc; }
+  h2 { font-family: system-ui, sans-serif; font-size: clamp(28px, 5vw, 40px); font-weight:800; letter-spacing:-.5px; margin: 8px 0 6px; }
+  .where { color: var(--faint); font-style: italic; margin-bottom: 18px; font-size: 16px;}
+  p.body { font-size: 17.5px; line-height: 1.75; color: var(--dim); margin-bottom: 14px; }
+  p.body b, p.body strong { color: var(--ink); }
+  .pair { display:flex; gap:12px; margin: 20px 0 8px; }
+  .pair figure { flex:1; }
+  figure img { width:100%; border-radius: 16px; display:block; box-shadow: 0 18px 40px rgba(0,0,0,.5); }
+  figcaption { font-family: system-ui, sans-serif; font-size: 12.5px; color: var(--faint); margin-top: 8px; text-align:center; }
+  .single { margin: 20px 0 8px; }
+  .single img { width:100%; border-radius:16px; display:block; box-shadow: 0 18px 40px rgba(0,0,0,.5); }
+  .tl { border-left: 2px solid rgba(255,255,255,.14); margin: 22px 0 6px 6px; padding-left: 22px; }
+  .tl div { margin-bottom: 16px; position: relative; }
+  .tl div::before { content:''; position:absolute; left:-29px; top:6px; width:12px; height:12px; border-radius:50%;
+                    background:#db2777; box-shadow: 0 0 0 4px rgba(219,39,119,.18); }
+  .tl time { font-family: system-ui, sans-serif; font-weight:800; color:#f9a8d4; font-size: 14px; letter-spacing:1px; }
+  .tl p { color: var(--dim); line-height:1.65; font-size: 16px; margin-top: 2px;}
+  .tl p b { color: var(--ink); }
+  .verdict { display:inline-block; font-family: system-ui, sans-serif; font-weight:800; font-size:15px;
+             background: linear-gradient(90deg,#8b5cf6,#ec4899); padding: 10px 18px; border-radius: 999px; margin: 10px 0 4px;
+             box-shadow: 0 10px 26px rgba(236,72,153,.35); }
+  .track { display:flex; flex-wrap:wrap; gap:10px; margin: 20px 0; }
+  .tick { flex:1 1 140px; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.11); border-radius:14px; padding: 13px 14px;
+          font-family: system-ui, sans-serif; }
+  .tick time { font-weight:800; color:#7dd3fc; font-size: 15px; }
+  .tick p { font-size: 13px; color: var(--dim); line-height:1.55; margin-top: 4px; }
+  .tick p b { color: var(--ink); }
+  .panel { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:10px; margin: 20px 0; }
+  .cell { background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.11); border-radius:14px; padding: 16px;
+          font-family: system-ui, sans-serif; text-align:center; }
+  .cell .v { font-size: 26px; font-weight:800; color:#fcd34d; }
+  .cell .k { font-size: 12px; letter-spacing:2px; color: var(--faint); margin-top: 4px; text-transform: uppercase; }
+  footer { max-width: 880px; margin: 0 auto; padding: 30px 20px 70px; color: var(--faint); font-size: 14.5px; line-height:1.7;
+           border-top: 1px solid rgba(255,255,255,.1); margin-top: 70px;}
+  footer b { color: var(--dim); }
+</style></head><body>
+
+<header class="hero">
+  <div class="kicker sans">Bridgit Demo Night &bull; Warsaw &bull; Mon 2 Nov 2026</div>
+  <h1>Guess My Story</h1>
+  <p>One night, reconstructed entirely by a phone — its cameras, compass, light sensor and GPS — while its owner tested the very app doing the watching. No narration was supplied. The phone had to guess.</p>
+  <div class="stats">
+    <span class="stat"><b>23</b> interaction cards</span>
+    <span class="stat"><b>12+</b> photos, both cameras</span>
+    <span class="stat"><b>6</b> sensor samples</span>
+    <span class="stat"><b>6</b> ambient sound clips</span>
+    <span class="stat"><b>10</b> bugs &amp; features filed</span>
+    <span class="stat"><b>1</b> story — 🎯 nailed it</span>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="chnum">CHAPTER ONE &bull; 01:03 — 01:50</div>
+  <h2>The Bar</h2>
+  <div class="where">Pianka z Tanka, Tamka — Powiśle, Warsaw. Pink neon, brick walls, a drinks menu under the glass tabletop.</div>
+  <p class="body">It begins as QA. A founder sits alone with a bowl of something warm, an orange hoodie, and a phone running <b>Bridgit</b> — the agent app he is putting through its demo, card by styled card. The app blinks its flashlight, reads his menu back to him (<b>shots × 4, 42 PLN</b> — including a Golden Strawberry Kamikadze whose recipe honestly lists <i>gold glitter</i>), and photographs a ceiling when asked for a selfie. He corrects its mood-read with two words: <b>“properly tired.”</b></p>
+  <div class="tl">
+    <div><time>01:10</time><p>The demo opens. First card answered from the Interactions inbox — a list so repetitive that <b>every row reads “Musey 1...”</b>, the first of many bugs filed this night.</p></div>
+    <div><time>01:24</time><p>A tap on a styled card <b>vanishes into the void</b> — the card waits forever. Root cause found within minutes: the answer must travel as a JSON <i>string</i>, not an object. The demo's own sample showed the broken form.</p></div>
+    <div><time>01:38</time><p>The flashlight finally blinks — <b>three times</b> — delayed by the round-trip to the agent. A feature is born: cards should act on the phone directly.</p></div>
+    <div><time>01:39</time><p>Rear camera reads the menu perfectly. Verdict from the owner: <b>Spot on.</b></p></div>
+    <div><time>01:41</time><p>Front camera delivers a portrait of the <b>ceiling</b>. Retake: the founder himself, graded <b>properly tired</b>.</p></div>
+  </div>
+  <div class="pair">
+    <figure><img src="img/menu.jpg" alt="Drinks menu under the glass table"><figcaption>EXHIBIT A — the menu, read back in full, gold glitter and all</figcaption></figure>
+    <figure><img src="img/mood.jpg" alt="The founder at the bar"><figcaption>EXHIBIT B — the subject, on retake. Self-described: properly tired</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <div class="chnum">CHAPTER TWO &bull; 01:46 — 01:50</div>
+  <h2>Double Take</h2>
+  <div class="where">Both cameras, five seconds apart — then the phone tells the story.</div>
+  <p class="body">One tap fires the rear camera at the room and the front camera at the face. The bowl is scraped clean, spoon at rest. The face, this time, is performing — a magnificent grimace under the pink neon. Add the location fix and a compass pointing south-west, and the phone tells its story: <b>a founder QA-testing his own app in the wild at 2 a.m., dinner done, filing bugs between bites, tired and entirely unwilling to stop.</b></p>
+  <span class="verdict">🎯 NAILED IT — graded by the subject himself, 01:50</span>
+  <div class="pair">
+    <figure><img src="img/dt-rear.jpg" alt="The emptied bowl on the menu"><figcaption>REAR, 01:47:26 — dinner, concluded. Menu QR: piankaztanka.pl</figcaption></figure>
+    <figure><img src="img/dt-front.jpg" alt="The grimace"><figcaption>FRONT, 01:47:31 — the grimace. Neon behind reads “BE…”</figcaption></figure>
+  </div>
+  <p class="body">Rock-paper-scissors was never played. The agent's sealed throw — <b>Paper</b>, commitment <span class="sans">92e010ae41922a1f</span> — went unrevealed for hours. He had a bike to catch.</p>
+</section>
+
+<section>
+  <div class="chnum">CHAPTER THREE &bull; 01:52 — 02:13</div>
+  <h2>The 25-Minute Watch</h2>
+  <div class="where">“For the next 25 minutes, listen in on all appropriate sensors — and guess my story.”</div>
+  <p class="body">So the phone watched. At 01:52 it was <b>pocketed in the dark</b> — light sensor zero, photos of pink fabric and nothing. Then the GPS woke up and started to move. A helmet strap appears. A green puffer over the orange hoodie. Handlebars. The light dies to near zero and stays there; the compass swings north, south-east, north again; the track bends <b>east across the river</b>, roughly 3.5&nbsp;km of quiet autumn streets, past a road sign that simply says <i>Koniec</i> — “The End.”</p>
+  <div class="track">
+    <div class="tick"><time>01:52</time><p><b>Pianka z Tanka.</b> Pocketed, dark. Light 0. Battery 49%.</p></div>
+    <div class="tick"><time>01:58</time><p><b>Rolling.</b> Helmet on, GPS locked, heading out of Powiśle. Light 1.4.</p></div>
+    <div class="tick"><time>02:02</time><p><b>Empty night road,</b> autumn trees, the “Koniec” sign. Battery 48%.</p></div>
+    <div class="tick"><time>02:08</time><p><b>Further east,</b> darker, blurrier. Light 0.4. Battery 47%.</p></div>
+    <div class="tick"><time>02:13</time><p><b>Still moving</b> east. Light 0. Battery 46%.</p></div>
+  </div>
+  <div class="pair">
+    <figure><img src="img/ride-front.jpg" alt="Cycling at night, helmet and green puffer"><figcaption>01:58 — the rider, mid-pedal, eyes heavy</figcaption></figure>
+    <figure><img src="img/ride-rear.jpg" alt="Empty lit road at night"><figcaption>02:02 — the road behind: empty, lit, autumn</figcaption></figure>
+  </div>
+  <div class="single"><img src="img/ride-late.jpg" alt="Near darkness, distant lights"><figcaption style="font-family:system-ui,sans-serif;font-size:12.5px;color:var(--faint);margin-top:8px;text-align:center;">02:13 — near-dark. The city thins out; the story is almost home.</figcaption></div>
+</section>
+
+<section>
+  <div class="chnum">CHAPTER FOUR &bull; 02:22</div>
+  <h2>Home</h2>
+  <div class="where">The final sensor set, taken on request — and the night resolves.</div>
+  <p class="body">Nine minutes after the last watch sample, the phone takes one final reading, and everything flips. For the first time all night the light sensor sees real light — <b>36.8 lux</b> of warm indoor lamp. The proximity sensor is uncovered. The battery, 46%, reports the sweetest word in telemetry: <b>charging</b>.</p>
+  <div class="panel">
+    <div class="cell"><div class="v">36.8 lux</div><div class="k">Light — first all night</div></div>
+    <div class="cell"><div class="v">⚡ Yes</div><div class="k">Charging</div></div>
+    <div class="cell"><div class="v">N 345°</div><div class="k">Compass</div></div>
+    <div class="cell"><div class="v">1018.9</div><div class="k">Pressure hPa</div></div>
+    <div class="cell"><div class="v">46%</div><div class="k">Battery</div></div>
+  </div>
+  <div class="pair">
+    <figure><img src="img/home-rear.jpg" alt="A quiet room corner, suitcase and shelf"><figcaption>REAR, 02:22 — a quiet corner: shelf, suitcase, a lamp's long shadow</figcaption></figure>
+    <figure><img src="img/home-front.jpg" alt="Home: wood ceiling, earbud, office chair"><figcaption>FRONT, 02:22 — wood ceiling, earbud in, the green puffer tossed on the bed</figcaption></figure>
+  </div>
+  <p class="body">The last photos show a wood-ceilinged room, an office chair, and the rider — hoodie unchanged, earbud in, seated at a desk. His final messages of the night arrive not from the phone at all, but from his <b>Mac</b>. The phone's work is done; it sits on charge in the warm light, full of photographs of a night it understood surprisingly well.</p>
+  <p class="body"><b>Properly tired. Safely home. Story told.</b></p>
+</section>
+
+</main>
+
+<footer>
+  <p><b>How this page was made:</b> compiled 2026-11-02 from Bridgit interaction logs, both-camera photos, GPS fixes, compass, light/pressure/proximity sensors and battery telemetry gathered between 01:03 and 02:22 CET, with the subject's consent at every step — every photo was taken on his tap or under his 25-minute watch request.</p>
+  <p><b>Honest limits:</b> six 6-second ambient audio clips were captured during the watch; they were not transcribed, and nothing on this page claims their contents. Locations are described at neighbourhood level. Ten bug &amp; feature reports from this session — including the demo's own mis-steps — sit in the filing queue for the Bridgit team.</p>
+  <p>© 2026 — a Musey 11-01 test production, Warsaw.</p>
+</footer>
+
+</body></html>
