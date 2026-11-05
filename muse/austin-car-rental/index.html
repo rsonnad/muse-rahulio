@@ -8,7 +8,7 @@
   :root{--ink:#1a2332;--mut:#5b6b82;--line:#d9e0ea;--bg:#f6f8fb;--card:#fff;--accent:#0b6b3a;--warnbg:#fff4d6;--best:#e7f6ee;--bad:#fdecec}
   *{box-sizing:border-box}
   body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.45}
-  .wrap{max-width:1220px;margin:0 auto;padding:24px 16px 48px}
+  .wrap{max-width:1260px;margin:0 auto;padding:24px 16px 48px}
   h1{font-size:26px;margin:0 0 6px}
   h2{font-size:20px;margin:30px 0 10px}
   p,li{font-size:14.5px}
@@ -26,12 +26,57 @@
   tbody td:first-child,tbody td:nth-child(2){text-align:left}
   tbody tr.best{background:var(--best)}
   .grand{font-weight:800;font-size:15px;white-space:nowrap}
-  .num{white-space:nowrap}
-  a.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:6px 10px;border-radius:6px;font-weight:600;white-space:nowrap}
+  .num .small{display:block;margin-top:3px;line-height:1.35}
+  /* Comparison tables: fixed column widths, scroll sideways on small screens */
+  .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--line);margin-top:12px}
+  .tscroll table{border:0;border-radius:0;table-layout:fixed}
+  table.cars{min-width:1180px}
+  table.turo{min-width:1180px}
+  thead th.l,tbody td.l{text-align:left}
+  /* Rental total (base + taxes) callout */
+  thead th.rt{background:#0b57a4}
+  tbody td.rt{background:#e6f0fb;color:#0a3a73;font-weight:800;font-size:15.5px;white-space:nowrap;border-left:2px solid #0b57a4;border-right:2px solid #0b57a4}
+  tbody tr:last-child td.rt{border-bottom:2px solid #0b57a4}
+  thead th.gt{background:#0b6b3a}
+  tbody td.grand{background:#eef8f2}
+  tbody tr.best td.grand{background:#d3efdf}
+  tbody td.v{text-align:center;vertical-align:top}
+  thead th.v{text-align:center}
+  td.v a.btn{white-space:normal;max-width:100%;text-align:center;line-height:1.25}
+  a.btn{display:inline-block;font-size:13px;background:var(--accent);color:#fff;text-decoration:none;padding:6px 10px;border-radius:6px;font-weight:600;white-space:nowrap}
   a{color:#0b57a4}
   .small{font-size:12.5px;color:var(--mut)}
   ul{margin:6px 0 6px 18px;padding:0}
   .tag{display:inline-block;background:#eef2f7;border:1px solid var(--line);border-radius:999px;padding:1px 8px;font-size:12px;margin:1px 2px}
+  @media (max-width:760px){
+    .wrap{padding:16px 12px 40px}
+    h1{font-size:22px}
+    .tscroll:not(.keep){overflow:visible;border:0;border-radius:0}
+    table.cars,table.turo{min-width:0;width:100%;table-layout:auto;background:transparent}
+    table.cars colgroup,table.turo colgroup,table.cars thead,table.turo thead{display:none}
+    table.cars,table.cars tbody,table.cars tr,table.cars td,table.turo,table.turo tbody,table.turo tr,table.turo td{display:block;width:100%}
+    table.cars tbody,table.turo tbody{counter-reset:r}
+    table.cars tr,table.turo tr{counter-increment:r;background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:14px;overflow:hidden}
+    table.cars tr.best,table.turo tr.best{background:var(--best);border-color:#9fd3b5}
+    table.cars td,table.turo td{text-align:right;padding:9px 12px;border-top:1px solid var(--line)}
+    table.cars td::before,table.turo td::before{content:attr(data-label);float:left;width:46%;text-align:left;font-size:12.5px;font-weight:600;color:var(--mut);padding-right:8px}
+    table.cars td::after,table.turo td::after{content:"";display:block;clear:both}
+    table.cars td[data-label="#"],table.turo td[data-label="#"]{display:none}
+    td.car{text-align:left!important;border-top:0!important;font-size:14.5px}
+    td.car::before{content:counter(r) ". "!important;float:none!important;width:auto!important;padding:0;color:var(--ink);font-size:14.5px;font-weight:800}
+    td.l{text-align:left!important}
+    td.l::before{float:none!important;display:block;width:auto!important;margin-bottom:2px}
+    td.span::before{display:none!important}
+    tbody td.rt{border:0;border-top:2px solid #0b57a4!important;border-bottom:2px solid #0b57a4!important;font-size:17px}
+    tbody tr:last-child td.rt{border-bottom:2px solid #0b57a4}
+    tbody td.rt::before{color:#0a3a73!important}
+    tbody td.grand{font-size:18px}
+    tbody td.grand::before{color:var(--ink)!important;font-size:13px}
+    tbody td.v{text-align:center!important}
+    tbody td.v::before{display:none}
+    tbody td.v a.btn{display:block;padding:10px;font-size:15px}
+    table.plain{min-width:520px}
+  }
 </style>
 </head>
 <body>
@@ -50,85 +95,85 @@
   </div>
 
   <h2>Rental cars — every component separated</h2>
-  <table>
+  <div class="tscroll"><table class="cars"><colgroup><col style="width:32px"><col style="width:196px"><col style="width:88px"><col style="width:132px"><col style="width:112px"><col style="width:176px"><col style="width:108px"><col style="width:150px"><col style="width:112px"><col style="width:120px"></colgroup>
     <thead><tr>
-      <th>#</th><th>Vendor / car</th><th>Base</th><th>Taxes &amp; fees<br>(rental only)</th><th>Rental total<br>(base + taxes)</th><th>Collision insurance</th><th>Extra tax/fees<br>on insurance</th><th>Liability</th><th>GRAND TOTAL<br>(tax included)</th><th>Verify</th>
+      <th>#</th><th class="l">Vendor / car</th><th>Base</th><th>Taxes &amp; fees<br>(rental only)</th><th class="rt">Rental total<br>(base + taxes)</th><th class="l">Collision insurance</th><th>Extra tax/fees<br>on insurance</th><th class="l">Liability</th><th class="gt">GRAND TOTAL<br>(tax included)</th><th class="v">Verify</th>
     </tr></thead>
     <tbody>
       <tr class="best">
-        <td>1</td>
-        <td><b>Discover Cars / Fox</b><br>Mitsubishi Mirage or similar <span class="tag">Economy</span><br><span class="small">In-terminal AUS · Unlimited mileage · Free cancellation before Nov 5, 12:00 PM · Deposit $150 · Fox supplier rating 7.0, 148 ratings (Discover Cars)</span></td>
-        <td class="num">Not split*</td>
-        <td class="num">Included, not itemised*</td>
-        <td class="num"><b>$523.18</b></td>
-        <td>Full Coverage (third-party reimbursement) $13.20/day = <b>$132.00</b></td>
-        <td class="num">Included in the $13.20/day</td>
-        <td>Third-party liability listed as included; base CDW excess $1,500 (Full Coverage is sold as protecting that excess, claimed back — not $0 at the counter)</td>
-        <td class="grand">$655.18*</td>
-        <td><a class="btn" target="_blank" rel="noopener" href="https://www.discovercars.com/offer/b3b501bd-0e9a-426e-a589-e0633914bdfb-2R3E?sq=eyJQaWNrdXBMb2NhdGlvbklkIjo2NjI0LCJEcm9wT2ZmTG9jYXRpb25JZCI6NjYyNCwiUGlja3VwRGF0ZVRpbWUiOiIyMDI2LTExLTA2VDEyOjAwOjAwIiwiRHJvcE9mZkRhdGVUaW1lIjoiMjAyNi0xMS0xNlQxMjowMDowMCIsIlJlc2lkZW5jZUNvdW50cnkiOiJVUyIsIkRyaXZlckFnZSI6MzUsIkhhc2giOiJmYTgwMjQ5ZWYxMzhkNjA3ZWUyYmVmOTRmY2JjMDA1YiJ9">Verify deal</a></td>
+        <td data-label="#">1</td>
+        <td class="l car" data-label="Vendor / car"><b>Discover Cars / Fox</b><br>Mitsubishi Mirage or similar <span class="tag">Economy</span><br><span class="small">In-terminal AUS · Unlimited mileage · Free cancellation before Nov 5, 12:00 PM · Deposit $150 · Fox supplier rating 7.0, 148 ratings (Discover Cars)</span></td>
+        <td class="num" data-label="Base">Not split*</td>
+        <td class="num" data-label="Taxes & fees">Included, not itemised*</td>
+        <td class="num rt" data-label="Rental total (base + taxes)"><b>$523.18</b></td>
+        <td class="l" data-label="Collision insurance">Full Coverage (third-party reimbursement) $13.20/day = <b>$132.00</b></td>
+        <td class="num" data-label="Extra tax/fees on insurance">Included in the $13.20/day</td>
+        <td class="l" data-label="Liability">Third-party liability listed as included<br><span class="small">Base CDW excess $1,500. Full Coverage reimburses it afterwards — not $0 at the counter.</span></td>
+        <td class="grand" data-label="GRAND TOTAL (tax incl.)">$655.18*</td>
+        <td class="v" data-label=""><a class="btn" target="_blank" rel="noopener" href="https://www.discovercars.com/offer/b3b501bd-0e9a-426e-a589-e0633914bdfb-2R3E?sq=eyJQaWNrdXBMb2NhdGlvbklkIjo2NjI0LCJEcm9wT2ZmTG9jYXRpb25JZCI6NjYyNCwiUGlja3VwRGF0ZVRpbWUiOiIyMDI2LTExLTA2VDEyOjAwOjAwIiwiRHJvcE9mZkRhdGVUaW1lIjoiMjAyNi0xMS0xNlQxMjowMDowMCIsIlJlc2lkZW5jZUNvdW50cnkiOiJVUyIsIkRyaXZlckFnZSI6MzUsIkhhc2giOiJmYTgwMjQ5ZWYxMzhkNjA3ZWUyYmVmOTRmY2JjMDA1YiJ9">Verify deal</a></td>
       </tr>
       <tr>
-        <td>2</td>
-        <td><b>Auto Europe / Fox</b><br>Nissan Versa or similar <span class="tag">Compact</span><br><span class="small">The car from the original Kayak screenshot · Unlimited mileage · Full-to-full fuel</span></td>
-        <td class="num">$364.42<br><span class="small">implied — not shown as its own line</span></td>
-        <td class="num"><b>$179.08</b><br><span class="small">Facility $67.50 · Licence $11.90 · Energy $6.00 · Tax $40.17 · Concession $33.42 · County tax $20.09</span></td>
-        <td class="num"><b>$543.50</b></td>
-        <td>RentalCover (third-party, Cover Genius) $13.20/day = <b>$132.00</b> — collision, theft/fire, glass, tires, underbody</td>
-        <td class="num">Included in the $13.20/day</td>
-        <td>Not separately priced</td>
-        <td class="grand">$675.50*</td>
-        <td><a class="btn" target="_blank" rel="noopener" href="https://book.autoeurope.com/en-us/checkout?isBasic=false&amp;affiliate=ae_kayak_us&amp;currency=USD&amp;drivers_age=35&amp;dropoff_date=2026-11-16&amp;dropoff_location=42&amp;dropoff_time=12%3A00&amp;pickup_date=2026-11-06&amp;pickup_location=42&amp;pickup_time=12%3A00&amp;residence_country=us">Verify deal</a></td>
+        <td data-label="#">2</td>
+        <td class="l car" data-label="Vendor / car"><b>Auto Europe / Fox</b><br>Nissan Versa or similar <span class="tag">Compact</span><br><span class="small">The car from the original Kayak screenshot · Unlimited mileage · Full-to-full fuel</span></td>
+        <td class="num" data-label="Base">$364.42<br><span class="small">implied — not shown as its own line</span></td>
+        <td class="num" data-label="Taxes & fees"><b>$179.08</b><br><span class="small">Facility $67.50<br>Licence $11.90<br>Energy $6.00<br>Tax $40.17<br>Concession $33.42<br>County tax $20.09</span></td>
+        <td class="num rt" data-label="Rental total (base + taxes)"><b>$543.50</b></td>
+        <td class="l" data-label="Collision insurance">RentalCover (third-party, Cover Genius) $13.20/day = <b>$132.00</b> — collision, theft/fire, glass, tires, underbody</td>
+        <td class="num" data-label="Extra tax/fees on insurance">Included in the $13.20/day</td>
+        <td class="l" data-label="Liability">Not separately priced</td>
+        <td class="grand" data-label="GRAND TOTAL (tax incl.)">$675.50*</td>
+        <td class="v" data-label=""><a class="btn" target="_blank" rel="noopener" href="https://book.autoeurope.com/en-us/checkout?isBasic=false&amp;affiliate=ae_kayak_us&amp;currency=USD&amp;drivers_age=35&amp;dropoff_date=2026-11-16&amp;dropoff_location=42&amp;dropoff_time=12%3A00&amp;pickup_date=2026-11-06&amp;pickup_location=42&amp;pickup_time=12%3A00&amp;residence_country=us">Verify deal</a></td>
       </tr>
       <tr>
-        <td>3</td>
-        <td><b>Budget — direct, LDW only</b><br>Volkswagen Jetta or similar <span class="tag">Standard</span><br><span class="small">Pay Later, $0 due today · Free cancellation · Unlimited miles · Google rating at AUS: 2.7 / 5, 1,851 reviews · <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=3819+Presidential+Blvd%2C+Austin%2C+TX+78719">3819 Presidential Blvd, Austin, TX 78719</a></span></td>
-        <td class="num"><b>$421.41</b></td>
-        <td class="num"><b>$234.29</b><br><span class="small">Concession $50.26 · Facility $67.50 · Energy $6.00 · Licence $25.00 · Tax $85.53</span></td>
-        <td class="num"><b>$655.70</b></td>
-        <td>Budget's own LDW ("Cover The Car") $32.99/day = <b>$329.90</b></td>
-        <td class="num"><b>+$91.63</b><br><span class="small">Taxes &amp; fees rise to $325.92</span></td>
-        <td>Not included in this row</td>
-        <td class="grand">$1,077.23</td>
-        <td><a class="btn" target="_blank" rel="noopener" href="https://www.budget.com/en/home">Verify at Budget</a></td>
+        <td data-label="#">3</td>
+        <td class="l car" data-label="Vendor / car"><b>Budget — direct, LDW only</b><br>Volkswagen Jetta or similar <span class="tag">Standard</span><br><span class="small">Pay Later, $0 due today · Free cancellation · Unlimited miles · Google rating at AUS: 2.7 / 5, 1,851 reviews · <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=3819+Presidential+Blvd%2C+Austin%2C+TX+78719">3819 Presidential Blvd, Austin, TX 78719</a></span></td>
+        <td class="num" data-label="Base"><b>$421.41</b></td>
+        <td class="num" data-label="Taxes & fees"><b>$234.29</b><br><span class="small">Concession $50.26<br>Facility $67.50<br>Energy $6.00<br>Licence $25.00<br>Tax $85.53</span></td>
+        <td class="num rt" data-label="Rental total (base + taxes)"><b>$655.70</b></td>
+        <td class="l" data-label="Collision insurance">Budget's own LDW ("Cover The Car") $32.99/day = <b>$329.90</b></td>
+        <td class="num" data-label="Extra tax/fees on insurance"><b>+$91.63</b><br><span class="small">Taxes &amp; fees rise to $325.92</span></td>
+        <td class="l" data-label="Liability">Not included in this row</td>
+        <td class="grand" data-label="GRAND TOTAL (tax incl.)">$1,077.23</td>
+        <td class="v" data-label=""><a class="btn" target="_blank" rel="noopener" href="https://www.budget.com/en/home">Verify at Budget</a></td>
       </tr>
       <tr>
-        <td>4</td>
-        <td><b>Avis — direct, collision cover</b><br>Mazda CX-50 or similar <span class="tag">Intermediate SUV</span><br><span class="small">Flexible rate · Free cancellation · Unlimited miles · Google rating at AUS: 4.3 / 5, 6,616 reviews · No Compact/Economy was available direct</span></td>
-        <td class="num"><b>$514.28</b></td>
-        <td class="num"><b>$260.08</b><br><span class="small">Concession $60.58 · Facility $67.50 · Energy $6.00 · Licence $25.00 · Local tax $101.00</span></td>
-        <td class="num"><b>$774.36</b></td>
-        <td>Avis Essential Protection = <b>$377.82</b><br><span class="small">LDW $29.69/day ($296.90) + Roadside $8.09/day ($80.91), after a $41.98 package discount. LDW stated as no deductible for damage/theft.</span></td>
-        <td class="num"><b>+$92.82</b><br><span class="small">Taxes &amp; fees rise to $352.90</span></td>
-        <td>Not included in this row</td>
-        <td class="grand">$1,245.00</td>
-        <td><a class="btn" target="_blank" rel="noopener" href="https://www.avis.com/en/reservation/review-and-book?pickup_location_code=AUS&amp;return_location_code=AUS&amp;pickup_day=06&amp;pickup_month=11&amp;pickup_year=2026&amp;pickup_hour=12&amp;pickup_am_pm=PM&amp;return_day=16&amp;return_month=11&amp;return_year=2026&amp;return_hour=12&amp;return_am_pm=PM&amp;age=25&amp;country=us&amp;locale=en-US&amp;brand=avis">Verify at Avis</a></td>
+        <td data-label="#">4</td>
+        <td class="l car" data-label="Vendor / car"><b>Avis — direct, collision cover</b><br>Mazda CX-50 or similar <span class="tag">Intermediate SUV</span><br><span class="small">Flexible rate · Free cancellation · Unlimited miles · Google rating at AUS: 4.3 / 5, 6,616 reviews · No Compact/Economy was available direct</span></td>
+        <td class="num" data-label="Base"><b>$514.28</b></td>
+        <td class="num" data-label="Taxes & fees"><b>$260.08</b><br><span class="small">Concession $60.58<br>Facility $67.50<br>Energy $6.00<br>Licence $25.00<br>Local tax $101.00</span></td>
+        <td class="num rt" data-label="Rental total (base + taxes)"><b>$774.36</b></td>
+        <td class="l" data-label="Collision insurance">Avis Essential Protection = <b>$377.82</b><br><span class="small">LDW $29.69/day ($296.90) + Roadside $8.09/day ($80.91), after a $41.98 package discount. LDW stated as no deductible for damage/theft.</span></td>
+        <td class="num" data-label="Extra tax/fees on insurance"><b>+$92.82</b><br><span class="small">Taxes &amp; fees rise to $352.90</span></td>
+        <td class="l" data-label="Liability">Not included in this row</td>
+        <td class="grand" data-label="GRAND TOTAL (tax incl.)">$1,245.00</td>
+        <td class="v" data-label=""><a class="btn" target="_blank" rel="noopener" href="https://www.avis.com/en/reservation/review-and-book?pickup_location_code=AUS&amp;return_location_code=AUS&amp;pickup_day=06&amp;pickup_month=11&amp;pickup_year=2026&amp;pickup_hour=12&amp;pickup_am_pm=PM&amp;return_day=16&amp;return_month=11&amp;return_year=2026&amp;return_hour=12&amp;return_am_pm=PM&amp;age=25&amp;country=us&amp;locale=en-US&amp;brand=avis">Verify at Avis</a></td>
       </tr>
       <tr>
-        <td>5</td>
-        <td><b>Budget — direct, LDW + liability</b><br>Volkswagen Jetta or similar <span class="tag">Standard</span><br><span class="small">Same car as row 3, with SLI added</span></td>
-        <td class="num"><b>$421.41</b></td>
-        <td class="num"><b>$234.29</b></td>
-        <td class="num"><b>$655.70</b></td>
-        <td>LDW $329.90 <b>+ SLI liability $188.30</b> ($18.83/day) = options $518.20</td>
-        <td class="num"><b>+$115.69</b><br><span class="small">Taxes &amp; fees rise to $349.98</span></td>
-        <td><b>SLI included</b> — claims by others after an accident, subject to policy limits</td>
-        <td class="grand">$1,289.59</td>
-        <td><a class="btn" target="_blank" rel="noopener" href="https://www.budget.com/en/home">Verify at Budget</a></td>
+        <td data-label="#">5</td>
+        <td class="l car" data-label="Vendor / car"><b>Budget — direct, LDW + liability</b><br>Volkswagen Jetta or similar <span class="tag">Standard</span><br><span class="small">Same car as row 3, with SLI added</span></td>
+        <td class="num" data-label="Base"><b>$421.41</b></td>
+        <td class="num" data-label="Taxes & fees"><b>$234.29</b></td>
+        <td class="num rt" data-label="Rental total (base + taxes)"><b>$655.70</b></td>
+        <td class="l" data-label="Collision insurance">LDW $329.90 <b>+ SLI liability $188.30</b> ($18.83/day) = options $518.20</td>
+        <td class="num" data-label="Extra tax/fees on insurance"><b>+$115.69</b><br><span class="small">Taxes &amp; fees rise to $349.98</span></td>
+        <td class="l" data-label="Liability"><b>SLI included</b> — claims by others after an accident, subject to policy limits</td>
+        <td class="grand" data-label="GRAND TOTAL (tax incl.)">$1,289.59</td>
+        <td class="v" data-label=""><a class="btn" target="_blank" rel="noopener" href="https://www.budget.com/en/home">Verify at Budget</a></td>
       </tr>
       <tr>
-        <td>6</td>
-        <td><b>Avis — direct, collision + liability</b><br>Mazda CX-50 or similar <span class="tag">Intermediate SUV</span><br><span class="small">Same car as row 4, with ALI added</span></td>
-        <td class="num"><b>$514.28</b></td>
-        <td class="num"><b>$260.08</b></td>
-        <td class="num"><b>$774.36</b></td>
-        <td>Essential $377.82 <b>+ ALI liability $188.30</b> ($18.83/day) = protections $566.12</td>
-        <td class="num"><b>+$116.88</b><br><span class="small">Taxes &amp; fees rise to $376.96</span></td>
-        <td><b>ALI liability included</b></td>
-        <td class="grand">$1,457.36</td>
-        <td><a class="btn" target="_blank" rel="noopener" href="https://www.avis.com/en/reservation/review-and-book?pickup_location_code=AUS&amp;return_location_code=AUS&amp;pickup_day=06&amp;pickup_month=11&amp;pickup_year=2026&amp;pickup_hour=12&amp;pickup_am_pm=PM&amp;return_day=16&amp;return_month=11&amp;return_year=2026&amp;return_hour=12&amp;return_am_pm=PM&amp;age=25&amp;country=us&amp;locale=en-US&amp;brand=avis">Verify at Avis</a></td>
+        <td data-label="#">6</td>
+        <td class="l car" data-label="Vendor / car"><b>Avis — direct, collision + liability</b><br>Mazda CX-50 or similar <span class="tag">Intermediate SUV</span><br><span class="small">Same car as row 4, with ALI added</span></td>
+        <td class="num" data-label="Base"><b>$514.28</b></td>
+        <td class="num" data-label="Taxes & fees"><b>$260.08</b></td>
+        <td class="num rt" data-label="Rental total (base + taxes)"><b>$774.36</b></td>
+        <td class="l" data-label="Collision insurance">Essential $377.82 <b>+ ALI liability $188.30</b> ($18.83/day) = protections $566.12</td>
+        <td class="num" data-label="Extra tax/fees on insurance"><b>+$116.88</b><br><span class="small">Taxes &amp; fees rise to $376.96</span></td>
+        <td class="l" data-label="Liability"><b>ALI liability included</b></td>
+        <td class="grand" data-label="GRAND TOTAL (tax incl.)">$1,457.36</td>
+        <td class="v" data-label=""><a class="btn" target="_blank" rel="noopener" href="https://www.avis.com/en/reservation/review-and-book?pickup_location_code=AUS&amp;return_location_code=AUS&amp;pickup_day=06&amp;pickup_month=11&amp;pickup_year=2026&amp;pickup_hour=12&amp;pickup_am_pm=PM&amp;return_day=16&amp;return_month=11&amp;return_year=2026&amp;return_hour=12&amp;return_am_pm=PM&amp;age=25&amp;country=us&amp;locale=en-US&amp;brand=avis">Verify at Avis</a></td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
   <p class="small">* Rows 1–2: figures from the first live check. On the Nov 5 re-check, Discover Cars would not show a base/tax split at all (its $523.18 rental total is stated as including taxes and fees) and its Full Coverage option did not appear before the driver-details step, so the $655.18 grand total could not be re-confirmed; Auto Europe's site blocked the re-check entirely ("access denied"), so its split is the first check's figures with the base implied. Rows 3–6 were fully re-confirmed at checkout on Nov 5, and their grand totals are the displayed checkout totals.</p>
 
   <div class="warn"><b>Why the direct companies cost so much more:</b> their collision cover is their <b>own LDW</b> at $29.69–$32.99/day <b>plus tax on the cover itself</b> ($91.63–$92.82 extra). The brokers' cover is a $13.20/day <b>third-party reimbursement</b> policy — cheaper, but the rental counter can still charge/hold the excess and you claim it back afterwards.</div>
@@ -136,49 +181,49 @@
   <h2>Tesla Model Y on Turo — taxes now included</h2>
   <div class="warn"><b>Is Turo insurance mandatory? No.</b> Per Turo's own US guest help page, a guest may pick a protection plan <b>or decline</b> — declining is allowed whether or not you have your own insurance, but then your responsibility for damage is <b>not limited at all</b> (full repair cost, or the car's cash value if written off). Turo's plans are not insurance; they cap what you pay out of pocket for damage to the host's car: <b>Minimum — up to $3,000</b> out of pocket; <b>Standard — up to $500</b>. Premier ($0) was not offered on these cars. <b>What IS included on every trip and cannot be declined:</b> state-minimum third-party liability cover (Travelers, on an excess/secondary basis). Extra supplemental liability was not offered on these Texas checkouts and is not mandatory. Source: <a target="_blank" rel="noopener" href="https://help.turo.com/en_us/protection-plans-including-insurance-or-us-guests-HkwgBNgN9">Turo — Protection plans in detail (US guests)</a>.<br>
   The grand totals below use the cheapest paid plan (Minimum), because that is the cheapest way to have any collision protection at all. Decline-protection and Standard totals are also shown.</div>
-  <table style="margin-top:12px">
+  <div class="tscroll"><table class="turo"><colgroup><col style="width:32px"><col style="width:226px"><col style="width:108px"><col style="width:76px"><col style="width:88px"><col style="width:76px"><col style="width:124px"><col style="width:124px"><col style="width:112px"><col style="width:120px"><col style="width:120px"></colgroup>
     <thead><tr>
-      <th>#</th><th>Car / host</th><th>Trip price<br>(after weekly discount)</th><th>Trip fee</th><th>Subtotal</th><th>Sales tax</th><th>Total, no protection<br>(tax included)</th><th>Minimum protection<br>($3,000 max out-of-pocket)</th><th>GRAND TOTAL<br>with Minimum</th><th>With Standard<br>($500 max out-of-pocket)</th><th>Verify</th>
+      <th>#</th><th class="l">Car / host</th><th>Trip price<br>(after weekly discount)</th><th>Trip fee</th><th>Subtotal</th><th>Sales tax</th><th class="rt">Total, no protection<br>(tax included)</th><th>Minimum protection<br>($3,000 max out-of-pocket)</th><th class="gt">GRAND TOTAL<br>with Minimum</th><th>With Standard<br>($500 max out-of-pocket)</th><th class="v">Verify</th>
     </tr></thead>
     <tbody>
       <tr class="best">
-        <td>1</td>
-        <td><b>2024 Tesla Model Y</b><br>Host: Vehicle Solutions – Austin, Austin TX 78748<br><span class="small">Noon pickup — the requested trip ✓ · 4.7 ★, 66 trips · 2,000 mi included · Free delivery within 60 miles · <b>Warning:</b> two reviews say this host cancelled trips 13h and 5h before start</span></td>
-        <td class="num">$538.65<br><span class="small">$567.00 − $28.35 discount</span></td>
-        <td class="num">$80.93</td>
-        <td class="num">$619.58</td>
-        <td class="num">$6.68</td>
-        <td class="num">$626.26</td>
-        <td class="num">$96.96<br><span class="small">$9.70/day</span></td>
-        <td class="grand">$723.22</td>
-        <td class="num">$787.86<br><span class="small">Standard $161.60</span></td>
-        <td><a class="btn" target="_blank" rel="noopener" href="https://turo.com/us/en/turbo-book?endDate=11%2F16%2F2026&amp;endTime=12%3A00&amp;startDate=11%2F06%2F2026&amp;startTime=12%3A00&amp;vehicleId=2789398">Verify on Turo</a></td>
+        <td data-label="#">1</td>
+        <td class="l car" data-label="Car / host"><b>2024 Tesla Model Y</b><br>Host: Vehicle Solutions – Austin, Austin TX 78748<br><span class="small">Noon pickup — the requested trip ✓ · 4.7 ★, 66 trips · 2,000 mi included · Free delivery within 60 miles · <b>Warning:</b> two reviews say this host cancelled trips 13h and 5h before start</span></td>
+        <td class="num" data-label="Trip price">$538.65<br><span class="small">$567.00 − $28.35 discount</span></td>
+        <td class="num" data-label="Trip fee">$80.93</td>
+        <td class="num" data-label="Subtotal">$619.58</td>
+        <td class="num" data-label="Sales tax">$6.68</td>
+        <td class="num rt" data-label="Rental total (with tax, no protection)">$626.26</td>
+        <td class="num" data-label="Minimum protection">$96.96<br><span class="small">$9.70/day</span></td>
+        <td class="grand" data-label="GRAND TOTAL with Minimum">$723.22</td>
+        <td class="num" data-label="With Standard">$787.86<br><span class="small">Standard $161.60</span></td>
+        <td class="v" data-label=""><a class="btn" target="_blank" rel="noopener" href="https://turo.com/us/en/turbo-book?endDate=11%2F16%2F2026&amp;endTime=12%3A00&amp;startDate=11%2F06%2F2026&amp;startTime=12%3A00&amp;vehicleId=2789398">Verify on Turo</a></td>
       </tr>
       <tr>
-        <td>2</td>
-        <td><b>2023 Tesla Model Y Long Range</b><br>Host: Balaraju, Liberty Hill TX 78642<br><span class="small"><b>⚠ 5:00 PM pickup, not noon</b> — Turo moved the start; noon is no longer offered on this car · 5.0 ★, 10 trips · 2,000 mi included ($0.25/mi extra) · Free delivery within 60 miles</span></td>
-        <td class="num">$494.00<br><span class="small">$520.00 − $26.00 discount</span></td>
-        <td class="num">$73.10</td>
-        <td class="num">$567.10</td>
-        <td class="num">$6.03</td>
-        <td class="num">$573.13</td>
-        <td class="num">$88.92<br><span class="small">$8.89/day</span></td>
-        <td class="grand">$662.05</td>
-        <td class="num">$721.33<br><span class="small">Standard $148.20</span></td>
-        <td><a class="btn" target="_blank" rel="noopener" href="https://turo.com/us/en/turbo-book?endDate=11%2F16%2F2026&amp;endTime=12%3A00&amp;startDate=11%2F06%2F2026&amp;startTime=17%3A00&amp;vehicleId=2931538">Verify on Turo</a></td>
+        <td data-label="#">2</td>
+        <td class="l car" data-label="Car / host"><b>2023 Tesla Model Y Long Range</b><br>Host: Balaraju, Liberty Hill TX 78642<br><span class="small"><b>⚠ 5:00 PM pickup, not noon</b> — Turo moved the start; noon is no longer offered on this car · 5.0 ★, 10 trips · 2,000 mi included ($0.25/mi extra) · Free delivery within 60 miles</span></td>
+        <td class="num" data-label="Trip price">$494.00<br><span class="small">$520.00 − $26.00 discount</span></td>
+        <td class="num" data-label="Trip fee">$73.10</td>
+        <td class="num" data-label="Subtotal">$567.10</td>
+        <td class="num" data-label="Sales tax">$6.03</td>
+        <td class="num rt" data-label="Rental total (with tax, no protection)">$573.13</td>
+        <td class="num" data-label="Minimum protection">$88.92<br><span class="small">$8.89/day</span></td>
+        <td class="grand" data-label="GRAND TOTAL with Minimum">$662.05</td>
+        <td class="num" data-label="With Standard">$721.33<br><span class="small">Standard $148.20</span></td>
+        <td class="v" data-label=""><a class="btn" target="_blank" rel="noopener" href="https://turo.com/us/en/turbo-book?endDate=11%2F16%2F2026&amp;endTime=12%3A00&amp;startDate=11%2F06%2F2026&amp;startTime=17%3A00&amp;vehicleId=2931538">Verify on Turo</a></td>
       </tr>
       <tr>
-        <td>3</td>
-        <td><b>2024 Tesla Model Y</b><br>Host: Vehicle Solutions – Austin, Austin TX 78748<br><span class="small">4.95 ★, 70 trips</span></td>
-        <td colspan="8"><b>Not bookable for this trip.</b> On re-check the car is unavailable from Nov 6, 9:00 PM to Nov 9, 3:30 AM, so no checkout — and therefore no tax-inclusive total — exists for it. Its old $607 "before taxes" figure from the first version of this page has been removed rather than presented as a total.</td>
-        <td><a class="btn" target="_blank" rel="noopener" href="https://turo.com/us/en/suv-rental/united-states/austin-tx/tesla/model-y/2746107?endDate=11%2F16%2F2026&amp;endTime=12%3A00&amp;searchId=MdYvwY5C&amp;searchRegion=TX&amp;startDate=11%2F06%2F2026&amp;startTime=12%3A00">Verify on Turo</a></td>
+        <td data-label="#">3</td>
+        <td class="l car" data-label="Car / host"><b>2024 Tesla Model Y</b><br>Host: Vehicle Solutions – Austin, Austin TX 78748<br><span class="small">4.95 ★, 70 trips</span></td>
+        <td colspan="8" class="l span" data-label="Trip price"><b>Not bookable for this trip.</b> On re-check the car is unavailable from Nov 6, 9:00 PM to Nov 9, 3:30 AM, so no checkout — and therefore no tax-inclusive total — exists for it. Its old $607 "before taxes" figure from the first version of this page has been removed rather than presented as a total.</td>
+        <td class="v" data-label=""><a class="btn" target="_blank" rel="noopener" href="https://turo.com/us/en/suv-rental/united-states/austin-tx/tesla/model-y/2746107?endDate=11%2F16%2F2026&amp;endTime=12%3A00&amp;searchId=MdYvwY5C&amp;searchRegion=TX&amp;startDate=11%2F06%2F2026&amp;startTime=12%3A00">Verify on Turo</a></td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
   <p class="small">Turo totals are the checkout totals displayed on Nov 5, 2026 — no sign-in was needed to see them. Turo pickup is city pickup / host delivery, not the AUS rental terminal; confirm the exact handover with the host. No other vendor (Hertz, Sixt, Kayak electric, brokers) produced a bookable Model Y with a priced cover for these dates.</p>
 
   <h2>Base prices seen — NOT counted (no collision price verified)</h2>
-  <table>
+  <div class="tscroll keep"><table class="plain">
     <thead><tr><th>Vendor / company</th><th>Car</th><th>Base total</th><th>Note / verify</th></tr></thead>
     <tbody>
       <tr><td>Kayak / Europcar</td><td>Nissan Versa, Compact</td><td class="num">$419</td><td rowspan="6"><a target="_blank" rel="noopener" href="https://www.kayak.com/cars/AUS-a22863/2026-11-06/2026-11-16?sort=price_a">Kayak AUS search, Nov 6–16, by price</a><br><span class="small">Kayak listing totals only — no checkout with collision cover was reached for them, so they are not comparable with the tables above.</span></td></tr>
@@ -189,7 +234,7 @@
       <tr><td>Kayak / Priceline &amp; Travelocity (Hertz)</td><td>Nissan Versa, Compact</td><td class="num">$547</td></tr>
       <tr><td>Discover Cars / Alamo</td><td>Mitsubishi Mirage, Economy</td><td class="num">$550.54</td><td>Discover Cars rating 8.5, 80 ratings. No Full Coverage price was shown for this car.</td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <h2>Checked with no collision-verified result</h2>
   <ul>
