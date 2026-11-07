@@ -24,6 +24,10 @@
   .praise div{background:linear-gradient(160deg,#221a3d,#131a26);border:1px solid #4c3a8f;border-radius:14px;padding:18px}
   .praise b{display:block;font-size:25px;line-height:1.25;font-weight:900}
   .praise span{display:block;color:var(--mut);font-size:14px;margin-top:7px}
+  .praise .wide{grid-column:1/-1;background:linear-gradient(120deg,#2a1a5e,#123a5e);border:2px solid #6d5bd0;padding:24px 26px}
+  .praise .wide b{font-size:31px;line-height:1.32}
+  @media(max-width:640px){.praise .wide b{font-size:24px}}
+  .praise .wide span{font-size:15px;color:var(--acc2)}
   .megapull{background:linear-gradient(135deg,#2a1a5e,#123a5e);border:1px solid #6d5bd0;border-radius:16px;padding:28px 30px;margin:36px 0 6px}
   .megapull p{font-size:31px;line-height:1.35;font-weight:900;color:#fff;margin:0}
   @media(max-width:640px){.megapull p{font-size:24px}}
@@ -139,6 +143,7 @@
 </div>
 
 <div class="praise">
+  <div class="wide"><b>"Bridgit is a robot without legs, spread across every device you own — and the first platform that makes 'what should my world notice?' a question anyone can answer with an app."</b><span>The one-sentence version of Bridgit — and the line this review closes on.</span></div>
   <div><b>"The idea is a 10."</b><span>The concept — distributed sensory apps — scored a perfect ten in the card below.</span></div>
   <div><b>"Idea to running app on a real phone: about a minute."</b><span>The fastest "hello world" I have ever shipped to someone else's hardware.</span></div>
   <div><b>"The iteration speed is absurd."</b><span>API revision 1 to revision 126 in about ten days.</span></div>
