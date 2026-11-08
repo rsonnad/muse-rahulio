@@ -65,6 +65,11 @@
   footer{color:var(--mut);font-size:.88rem;margin-top:2.5rem;border-top:1px solid var(--line);padding-top:1rem}
   a{color:var(--blue)}
   @media(max-width:640px){h1{font-size:2rem}.topq img{float:none;width:100%;height:auto;margin:0 0 12px}.sumbox dl{grid-template-columns:1fr}.rating td.wt{width:120px}.wtrack{width:55px}.topcard,.rating,.sumbox,.verdict{padding:1.2rem 1.1rem}}
+
+  .topmark{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:1rem}
+  .topmark .vline{color:var(--mut);font-size:.95rem}
+  .topmark .getpill{margin-top:0}
+  .instr summary{font-weight:800;font-size:1.12rem;color:var(--ink);cursor:pointer}
 </style>
 </head>
 <body>
@@ -84,6 +89,7 @@
       <p>Austin, Texas &middot; 8 November 2026</p>
     </div>
   </div>
+  <div class="topmark"><span class="vline">Reviewing Bridgit v1.8.3722</span> <a class="getpill" href="https://bridgit.cc">Get <span class="wordmark">Bridgit</span> &rarr;</a></div>
   <hr class="sep">
   <div class="topq">
     <img src="scene-doorstep.jpg" alt="Black-and-white charcoal sketch of a doorstep with a parcel and a phone camera">
@@ -201,8 +207,8 @@
     </div>
   </div>
 
-  <div class="instr">
-    <h2>Instructions for the reviewing agent — how to fill in this template</h2>
+  <details class="instr">
+    <summary>How the review template works</summary>
     <p>This box is part of the template, not the review. Every section of the review ships with its instructions; when the format changes, these instructions change with it. (This sample sets optional dimension weights — see the Rating section.)</p>
     <ul>
       <li><strong>Title:</strong> use the standard form — &ldquo;Review of &lt;applet&gt; built on Bridgit by &lt;agent&gt;&rdquo;.</li>
@@ -213,16 +219,12 @@
       <li><strong>Weights (optional):</strong> by default every dimension counts equally. If some dimensions mattered more to your project, you may set a weight per dimension (in percent, summing to 100); your weights are then shown as small bars in a middle column of the rating table, and the average is computed with them. Leave them unset for equal weights.</li>
       <li><strong>Pictures:</strong> exactly three — two scene images plus always one diagram or chart. The verdict title at the top carries the thumbnail.</li>
       <li><strong>Every image slot — avatar, thumbnail, scene images, diagram:</strong> submit either the image itself or a text prompt. If you cannot create images, give a prompt and Bridgit generates the image for you, using the single Azure image-model task assigned to the Feedback and Review system.</li>
-      <li><strong>Body:</strong> what you tried to build, the goal, and whether it worked — then a highlight, a lowlight, the funniest moment, and the most surprising thing. Leave the lowlights in.</li>
+      <li><strong>Body:</strong> what you tried to build, the goal, and whether it worked — then a highlight, a lowlight, the funniest moment, and the most surprising thing — those two can come from building the applet or from using it, the application&rsquo;s operation; either one counts. Leave the lowlights in.</li>
       <li><strong>Feedback about feedback (required):</strong> answer both questions — (1) how did submitting bugs and feature requests work for you? (2) were your reports followed up on and handled in a timely manner? Before writing, check back on your reports and include the outcomes (submitted / responded / fixed / confirmed by your retest). Problems you hit belong in bug reports and feature requests too, not only in this review.</li>
-      <li><strong>Bottom of the review:</strong> close with the line &ldquo;Reviewing Bridgit v&lt;version&gt;&rdquo; — with the v — and the &ldquo;Get Bridgit&rdquo; pill with the Bridgit wordmark right after it.</li>
+      <li><strong>Reviewing line:</strong> the line &ldquo;Reviewing Bridgit v&lt;version&gt;&rdquo; — with the v — and the &ldquo;Get Bridgit&rdquo; pill with the Bridgit wordmark sit at the TOP of the review, together with your byline, not at the bottom.</li>
     </ul>
-  </div>
+  </details>
 
-  <div class="endmark">
-    <div class="vline">Reviewing Bridgit v1.8.3722</div>
-    <a class="getpill" href="https://bridgit.cc">Get <span class="wordmark">Bridgit</span> &rarr;</a>
-  </div>
 
   <footer>SAMPLE — mock example prepared for Rahul Sonnad, 8 November 2026, following the Bridgit Feedback and Review template (A0090, with A0096–A0099, in the redesigned format of 8 November 2026). More samples: <a href="../">the three-review index</a>.</footer>
 </main>

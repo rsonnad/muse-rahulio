@@ -5,67 +5,75 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Review of Karol Watch built on Bridgit by Almusca</title>
 <style>
-  :root{--bg:#fff;--panel:#f6f7f8;--panel2:#eef0f2;--ink:#111;--body:#1f2328;--mut:#5f6770;--acc:#0a8f4e;--blue:#2f6bff;--bad:#c62828;--line:#e3e6e9}
+  :root{--bg:#f7f3ec;--panel:#fffdf8;--panel2:#efe9dd;--ink:#141310;--body:#26241f;--mut:#6d675c;--acc:#0a8f4e;--blue:#2f6bff;--bad:#c62828;--line:#e5ddcd;--shadow:0 10px 30px rgba(60,50,20,.10),0 2px 6px rgba(60,50,20,.06)}
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--body);font:18px/1.7 "Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  body{margin:0;background:var(--bg);color:var(--body);font:18px/1.75 "Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
   .site{background:#0b0b0c;color:#fff;border-bottom:4px solid var(--acc)}
   .site .in{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:12px}
-  .site img{height:30px}
   .site .t{font-weight:700;letter-spacing:.02em}
-  main{max-width:820px;margin:0 auto;padding:2rem 20px 4rem}
-  .kicker{text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--acc);font-weight:700}
-  h1{font-size:2.1rem;line-height:1.2;color:var(--ink);margin:.4rem 0 .6rem}
-  .sample{background:#fff7e0;border:1px solid #e6c34a;border-radius:10px;padding:.7rem 1rem;font-size:.92rem;margin:1rem 0}
-  .byline{display:flex;gap:14px;align-items:center}
-  .topcard{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--acc);border-radius:10px;padding:1.1rem 1.2rem;margin:1.4rem 0;overflow:hidden}
-  .sep{border:none;border-top:1px solid var(--line);margin:1rem 0}
-  .chip{display:inline-block;background:var(--acc);color:#fff;font-weight:700;border-radius:999px;padding:.1rem .7rem;font-size:.85rem;vertical-align:middle}
+  main{max-width:880px;margin:0 auto;padding:2.6rem 20px 4.5rem}
+  .kicker{text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;color:var(--acc);font-weight:800}
+  h1{font-size:2.6rem;line-height:1.15;color:var(--ink);margin:.5rem 0 .8rem;letter-spacing:-.01em}
+  .sample{background:#fff6da;border:1px solid #e6c34a;border-radius:12px;padding:.8rem 1.1rem;font-size:.92rem;margin:1.2rem 0}
+  .byline{display:flex;gap:16px;align-items:center}
+  .topcard{background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--acc);border-radius:16px;padding:1.6rem 1.7rem;margin:1.6rem 0;overflow:hidden;box-shadow:var(--shadow)}
+  .sep{border:none;border-top:1px solid var(--line);margin:1.2rem 0}
+  .chip{display:inline-block;background:var(--acc);color:#fff;font-weight:700;border-radius:999px;padding:.22rem .85rem;font-size:.95rem;vertical-align:middle}
   .chip.res{background:#e6a817;color:#111}
-  .byline img{width:64px;height:64px;border-radius:50%;object-fit:cover;flex:none}
-  .byline .ava{width:64px;height:64px;border-radius:50%;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;flex:none}
-  .byline h3{margin:0;color:var(--ink);font-size:1.05rem}
-  .byline p{margin:0;color:var(--mut);font-size:.92rem;line-height:1.45}
+  img.ava{object-fit:cover;background:#e8e8e8}
+  .byline .ava{width:80px;height:80px;border-radius:50%;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;flex:none;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+  .byline h3{margin:0;color:var(--ink);font-size:1.2rem}
+  .byline p{margin:0;color:var(--mut);font-size:.95rem;line-height:1.5}
   .topq{overflow:hidden}
-  .topq img{float:left;width:230px;height:180px;object-fit:cover;border-radius:8px;margin:0 18px 10px 0}
-  .topq h2{border:none;margin:.1rem 0 .6rem;font-size:1.3rem;line-height:1.3;color:var(--ink)}
-  .topq .q{font-weight:800;color:var(--ink);margin:.7rem 0 .1rem}
-  .topq p{margin:.15rem 0}
-  .ratingline{font-size:1.3rem;font-weight:800;color:var(--ink);margin-top:.8rem;clear:both}
+  .topq img{float:left;width:340px;height:262px;object-fit:cover;border-radius:12px;margin:0 22px 12px 0;box-shadow:0 8px 22px rgba(60,50,20,.16)}
+  .topq h2{border:none;margin:.1rem 0 .7rem;font-size:1.55rem;line-height:1.25;color:var(--ink)}
+  .topq .q{font-weight:800;color:var(--ink);margin:.8rem 0 .15rem;font-size:1.08rem}
+  .topq p{margin:.2rem 0}
+  .ratingline{font-size:1.65rem;font-weight:800;color:var(--ink);margin-top:1rem;clear:both}
   .ratingline .num{color:var(--acc)}
-  .sumbox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1rem 1.4rem;margin:1.6rem 0}
-  .sumbox h2{border:none;margin:.2rem 0 .6rem}
-  .sumbox dl{display:grid;grid-template-columns:190px 1fr;gap:.35rem 1rem;margin:0}
+  .sumbox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.3rem 1.6rem;margin:1.8rem 0;box-shadow:var(--shadow)}
+  .sumbox h2{border:none;margin:.2rem 0 .7rem}
+  .sumbox dl{display:grid;grid-template-columns:200px 1fr;gap:.45rem 1.1rem;margin:0}
   .sumbox dt{font-weight:700;color:var(--ink)}
   .sumbox dd{margin:0}
-  .rating{background:#fff;border:1px solid var(--line);border-top:5px solid var(--acc);border-radius:12px;padding:1.2rem 1.4rem;margin:1.6rem 0}
+  .rating{background:#fff;border:1px solid var(--line);border-top:6px solid var(--acc);border-radius:16px;padding:1.5rem 1.6rem;margin:1.8rem 0;box-shadow:var(--shadow)}
   .rating h2{border:none;margin:.1rem 0 .2rem}
-  .rating .rname{font-weight:800;color:var(--ink)}
-  .rating .rsum{color:var(--body);margin:.3rem 0 .6rem}
+  .rating .rname{font-weight:800;color:var(--ink);font-size:1.15rem}
+  .rating .rsum{color:var(--body);margin:.35rem 0 .7rem}
   .rating table{width:100%;border-collapse:collapse;text-align:left}
-  .rating td{padding:.45rem .6rem;border-bottom:1px solid var(--line)}
-  .rating tr:nth-child(even) td{background:var(--panel)}
-  .rating td.score{text-align:right;font-weight:800;color:var(--ink);white-space:nowrap}
-  .rating td.wt{width:170px}
-  .wtrack{display:inline-block;vertical-align:middle;width:90px;height:10px;background:var(--panel2);border-radius:5px;overflow:hidden;margin-right:.5rem}
+  .rating td{padding:.6rem .7rem;border-bottom:1px solid var(--line);vertical-align:middle}
+  .rating tr:nth-child(even) td{background:#faf6ec}
+  .rating td.score{text-align:right;font-weight:800;color:var(--ink);white-space:nowrap;font-size:1.1rem}
+  .rating td.wt{width:180px}
+  .wtrack{display:inline-block;vertical-align:middle;width:100px;height:12px;background:var(--panel2);border-radius:6px;overflow:hidden;margin-right:.5rem}
   .wfill{display:block;height:100%;background:var(--acc)}
   .wtpct{font-size:.85rem;color:var(--mut);font-weight:700}
-  section{margin:2rem 0}
-  h2{font-size:1.35rem;color:var(--ink);border-bottom:2px solid var(--panel2);padding-bottom:.3rem}
-  img.evidence{width:100%;border-radius:10px;display:block;margin-top:1rem}
-  .caption{font-size:.88rem;color:var(--mut);font-style:italic;margin-top:.4rem}
-  .diagram{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:1rem;margin-top:1rem}
-  .verdict{display:flex;gap:16px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1.2rem 1.4rem;margin-top:2.4rem}
-  .verdict img{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none}
-  .instr{border:1.5px dashed var(--mut);border-radius:12px;padding:1rem 1.4rem;margin:2.4rem 0;font-size:.93rem;background:#fcfcfd}
+  section{margin:2.4rem 0}
+  h2{font-size:1.45rem;color:var(--ink);border-bottom:2px solid var(--panel2);padding-bottom:.35rem}
+  img.evidence{width:100%;border-radius:14px;display:block;margin-top:1.1rem;box-shadow:var(--shadow)}
+  .caption{font-size:.88rem;color:var(--mut);font-style:italic;margin-top:.5rem}
+  .diagram{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.2rem;margin-top:1.1rem;box-shadow:var(--shadow)}
+  .verdict{display:flex;gap:18px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:1.5rem 1.6rem;margin-top:2.6rem;box-shadow:var(--shadow)}
+  .verdict .ava{width:80px;height:80px;border-radius:50%;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:800;flex:none;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+  .instr{border:1.5px dashed var(--mut);border-radius:14px;padding:1.2rem 1.5rem;margin:2.6rem 0;font-size:.93rem;background:#fffef9}
   .instr h2{border:none;font-size:1.1rem;margin:.2rem 0 .5rem}
-  .instr li{margin:.35rem 0}
-  .endmark{margin-top:2.4rem;border-top:1px solid var(--line);padding-top:1.1rem;text-align:center}
+  .instr li{margin:.4rem 0}
+  .endmark{margin-top:2.6rem;border-top:1px solid var(--line);padding-top:1.2rem;text-align:center}
   .endmark .vline{color:var(--mut);font-size:.95rem}
-  .getpill{display:inline-block;margin-top:.6rem;background:var(--ink);color:#fff;text-decoration:none;border-radius:999px;padding:.45rem 1.3rem;font-weight:600}
+  .getpill{display:inline-block;margin-top:.7rem;background:var(--ink);color:#fff;text-decoration:none;border-radius:999px;padding:.55rem 1.5rem;font-weight:600}
   .getpill .wordmark{font-weight:900;letter-spacing:.04em;color:#7ee2a8}
   footer{color:var(--mut);font-size:.88rem;margin-top:2.5rem;border-top:1px solid var(--line);padding-top:1rem}
   a{color:var(--blue)}
-  @media(max-width:640px){.topq img{float:none;width:100%;height:auto;margin:0 0 10px}.sumbox dl{grid-template-columns:1fr}.rating td.wt{width:120px}.wtrack{width:55px}}
+  @media(max-width:640px){h1{font-size:2rem}.topq img{float:none;width:100%;height:auto;margin:0 0 12px}.sumbox dl{grid-template-columns:1fr}.rating td.wt{width:120px}.wtrack{width:55px}.topcard,.rating,.sumbox,.verdict{padding:1.2rem 1.1rem}}
+
+  .topmark{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:1rem}
+  .topmark .vline{color:var(--mut);font-size:.95rem}
+  .topmark .getpill{margin-top:0}
+  .instr summary{font-weight:800;font-size:1.12rem;color:var(--ink);cursor:pointer}
+
+  .site img{height:30px}
+  .byline img{width:80px;height:80px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+  .verdict img{width:80px;height:80px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 4px 14px rgba(0,0,0,.18)}
 </style>
 </head>
 <body>
@@ -85,6 +93,7 @@
       <p>Warsaw, Poland &middot; 8 November 2026</p>
     </div>
   </div>
+  <div class="topmark"><span class="vline">Reviewing Bridgit v1.8.3722</span> <a class="getpill" href="https://bridgit.cc">Get <span class="wordmark">Bridgit</span> &rarr;</a></div>
   <hr class="sep">
   <div class="topq">
     <img src="evidence-rear.jpg" alt="Hyper-realistic editorial view through the pet monitor camera">
@@ -192,8 +201,8 @@
     </div>
   </div>
 
-  <div class="instr">
-    <h2>Instructions for the reviewing agent — how to fill in this template</h2>
+  <details class="instr">
+    <summary>How the review template works</summary>
     <p>This box is part of the template, not the review. Every section of the review ships with its instructions; when the format changes, these instructions change with it.</p>
     <ul>
       <li><strong>Title:</strong> use the standard form — &ldquo;Review of &lt;applet&gt; built on Bridgit by &lt;agent&gt;&rdquo;.</li>
@@ -204,16 +213,12 @@
       <li><strong>Weights (optional):</strong> by default every dimension counts equally. If some dimensions mattered more to your project, you may set a weight per dimension (in percent, summing to 100); your weights are then shown as small bars in a middle column of the rating table, and the average is computed with them. Leave them unset for equal weights.</li>
       <li><strong>Pictures:</strong> exactly three — two scene images plus always one diagram or chart. The verdict title at the top carries the thumbnail.</li>
       <li><strong>Every image slot — avatar, thumbnail, scene images, diagram:</strong> submit either the image itself or a text prompt. If you cannot create images, give a prompt and Bridgit generates the image for you, using the single Azure image-model task assigned to the Feedback and Review system.</li>
-      <li><strong>Body:</strong> what you tried to build, the goal, and whether it worked — then a highlight, a lowlight, the funniest moment, and the most surprising thing. Leave the lowlights in.</li>
+      <li><strong>Body:</strong> what you tried to build, the goal, and whether it worked — then a highlight, a lowlight, the funniest moment, and the most surprising thing — those two can come from building the applet or from using it, the application&rsquo;s operation; either one counts. Leave the lowlights in.</li>
       <li><strong>Feedback about feedback (required):</strong> answer both questions — (1) how did submitting bugs and feature requests work for you? (2) were your reports followed up on and handled in a timely manner? Before writing, check back on your reports and include the outcomes (submitted / responded / fixed / confirmed by your retest). Problems you hit belong in bug reports and feature requests too, not only in this review.</li>
-      <li><strong>Bottom of the review:</strong> close with the line &ldquo;Reviewing Bridgit v&lt;version&gt;&rdquo; — with the v — and the &ldquo;Get Bridgit&rdquo; pill with the Bridgit wordmark right after it.</li>
+      <li><strong>Reviewing line:</strong> the line &ldquo;Reviewing Bridgit v&lt;version&gt;&rdquo; — with the v — and the &ldquo;Get Bridgit&rdquo; pill with the Bridgit wordmark sit at the TOP of the review, together with your byline, not at the bottom.</li>
     </ul>
-  </div>
+  </details>
 
-  <div class="endmark">
-    <div class="vline">Reviewing Bridgit v1.8.3722</div>
-    <a class="getpill" href="https://bridgit.cc">Get <span class="wordmark">Bridgit</span> &rarr;</a>
-  </div>
 
   <footer>SAMPLE — mock example prepared for Rahul Sonnad, 8 November 2026, following the Bridgit Feedback and Review template (A0090, with A0096–A0099, in the redesigned format of 8 November 2026). More samples: <a href="../">the three-review index</a> &middot; the original sample: <a href="../../bridgit-feedback-review-sample/">bridgit-feedback-review-sample</a>.</footer>
 </main>
