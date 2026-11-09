@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Karol's Portrait Gallery</title>
+<style>
+  :root{
+    --bg:#1a140f; --surface:#2a2015; --surface-alt:#241b11;
+    --text:#f3ead8; --dim:#b3a182; --border:#57431f;
+    --accent:#c9a227; --accent-deep:#7a2e2e; --radius:6px;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:Georgia,'Times New Roman',serif;}
+  .display{font-family:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif}
+  .wrap{max-width:64rem;margin:0 auto;padding:0 1rem 4rem}
+  .frame-gilt{border:3px solid #c9a227;outline:1px solid #6d5516;outline-offset:3px;
+    box-shadow:inset 0 0 0 2px rgba(26,20,15,.55),0 10px 28px rgba(0,0,0,.45);background:#0f0b07}
+  h1{font-size:2.2rem;line-height:1.15;margin:0 0 1rem}
+  .intro{color:var(--dim);font-size:1.05rem;line-height:1.6;margin:0}
+  .spotlight{display:grid;grid-template-columns:1fr;gap:2rem;padding-top:2rem}
+  @media(min-width:768px){.spotlight{grid-template-columns:1.15fr 1fr}}
+  .spotlight figure{margin:0;position:relative}
+  .spotlight img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/5}
+  .plaque{margin-top:1.1rem;background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius);padding:.9rem 1.1rem}
+  .plaque .kicker{color:var(--accent);text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;margin:0 0 .3rem}
+  .plaque .name{font-size:1.25rem;margin:0 0 .3rem}
+  .plaque .sub{color:var(--dim);margin:0;font-size:.95rem}
+  .badge{position:absolute;top:.9rem;left:.9rem;background:var(--accent);color:#1a140f;
+    font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:.3rem .6rem;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+  .sitter h2{margin-top:0}
+  .sitter figure{margin:0 0 1rem}
+  .sitter img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
+  .sitter p{color:var(--dim);line-height:1.6}
+  .howto{background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--radius);
+    padding:.9rem 1.1rem;color:var(--dim);line-height:1.6;font-size:.95rem}
+  h2.section{font-size:1.6rem;margin:3rem 0 1.4rem}
+  .wall{display:grid;grid-template-columns:1fr;gap:2rem}
+  @media(min-width:480px){.wall{grid-template-columns:1fr 1fr}}
+  @media(min-width:1024px){.wall{grid-template-columns:1fr 1fr 1fr}}
+  .card figure{margin:0;position:relative}
+  .card button.framebtn{display:block;width:100%;padding:0;background:none;border:none;cursor:pointer}
+  .card img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover}
+  .card h3{font-size:1.15rem;margin:.9rem 0 .25rem}
+  .card .style{color:var(--accent);text-transform:uppercase;letter-spacing:.12em;font-size:.7rem;margin:0 0 .5rem}
+  .card .note{color:var(--dim);line-height:1.55;font-size:.94rem;margin:0 0 .8rem}
+  .sharebar{height:6px;background:var(--surface);border-radius:999px;overflow:hidden;margin-bottom:.6rem}
+  .sharebar i{display:block;height:100%;background:var(--accent);width:0%}
+  .voterow{display:flex;align-items:center;justify-content:space-between;gap:.8rem}
+  .count{color:var(--dim);font-size:.88rem}
+  .vote{font:inherit;cursor:pointer;border:1px solid var(--accent);color:var(--accent);
+    background:transparent;border-radius:999px;padding:.45rem 1.1rem;font-size:.92rem}
+  .vote[aria-pressed="true"]{background:var(--accent);color:#1a140f;font-weight:700}
+  .standings-empty{color:var(--dim);line-height:1.6}
+  ol.standings{list-style:none;margin:0;padding:0}
+  ol.standings li{display:flex;align-items:center;gap:.9rem;background:var(--surface);
+    border:1px solid var(--border);border-radius:var(--radius);padding:.55rem .9rem;margin-bottom:.55rem}
+  ol.standings img{width:40px;height:50px;object-fit:cover}
+  ol.standings .t{flex:1}
+  ol.standings .t small{display:block;color:var(--dim)}
+  .yours{color:var(--accent);font-size:.78rem;text-transform:uppercase;letter-spacing:.1em}
+  .closing{color:var(--dim);font-style:italic;margin-top:3rem;line-height:1.6}
+  .sample-note{color:var(--dim);font-size:.85rem;border-top:1px solid var(--border);
+    margin-top:2.5rem;padding-top:1.2rem;line-height:1.6}
+  /* Bridgit footer (standard for applet pages on the web) */
+  .bridgit-footer{margin-top:2rem;border-top:1px solid var(--border);padding-top:1.4rem;
+    display:flex;align-items:center;gap:.7rem;flex-wrap:nowrap}
+  .bridgit-footer .get{font-size:1rem;white-space:nowrap}
+  .storebadge{display:inline-flex;align-items:center;gap:.45rem;background:#000;color:#fff;
+    border:1px solid #444;border-radius:6px;padding:.28rem .6rem;text-decoration:none;flex:none}
+  .storebadge .l1{display:block;font-size:.5rem;line-height:1.1;letter-spacing:.04em}
+  .storebadge .l2{display:block;font-size:.82rem;line-height:1.1;font-weight:600}
+  /* Lightbox */
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;
+    align-items:center;justify-content:center;padding:1.2rem;z-index:50}
+  .lightbox.open{display:flex}
+  .lightbox .box{max-width:30rem;width:100%;max-height:92vh;overflow:auto}
+  .lightbox img{width:100%;display:block}
+  .lightbox .meta{background:var(--surface);padding:1rem 1.2rem;margin-top:1rem;border-radius:var(--radius)}
+  .lightbox h3{margin:.2rem 0 .3rem}
+  .lightbox .style{color:var(--accent);text-transform:uppercase;letter-spacing:.12em;font-size:.7rem;margin:0 0 .5rem}
+  .lightbox .note{color:var(--dim);line-height:1.55}
+  .closebtn{position:absolute;top:1rem;right:1.2rem;background:none;border:none;color:#fff;
+    font-size:2rem;cursor:pointer;line-height:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="spotlight">
+    <div>
+      <figure class="frame-gilt">
+        <img id="spotImg" src="karol-renaissance.jpg" alt="Karol I, by the Grace of Treats — Renaissance portrait of Karol">
+        <span class="badge" id="spotBadge" style="display:none"></span>
+      </figure>
+      <div class="plaque">
+        <p class="kicker" id="plaqueKicker">Portrait of the season</p>
+        <p class="name display" id="plaqueName">Karol I, by the Grace of Treats</p>
+        <p class="sub" id="plaqueSub">Awaiting its first vote — the wall is yours to decide.</p>
+      </div>
+    </div>
+    <div class="sitter">
+      <h1 class="display">One very good dog, twelve ways of seeing him.</h1>
+      <p class="intro">Karol — black coat, amber eyes, professional napper — sat for a whole wall of portraits: Renaissance noble, pop-art star, stained-glass saint, claymation puppy. Walk the gallery, tap a frame to see it up close, and vote for the one that deserves the gilt.</p>
+      <figure class="frame-gilt"><img src="karol-original.jpg" alt="The real Karol, photographed at home"></figure>
+      <h2 class="display">Meet the sitter</h2>
+      <p>The real Karol, photographed at home — the face every artist on this wall was chasing. Lately he can mostly be found asleep, which the charcoal study captures honestly.</p>
+      <div class="howto" id="howto">No votes yet — yours could be the first on the wall. You hold one vote — give it to a favourite, tap it again to take it back, or move it whenever a better Karol catches your eye.</div>
+    </div>
+  </div>
+
+  <h2 class="section display">The Gallery Wall</h2>
+  <div class="wall" id="wall"></div>
+
+  <h2 class="section display">The Standings</h2>
+  <div id="standings"></div>
+
+  <p class="closing">Karol has reviewed the collection and approves of all twelve, especially the ones with snacks just out of frame.</p>
+
+  <p class="sample-note">Sample webpage — a web copy of the “Karol’s Portrait Gallery” applet page, in the same format as the original. On this sample, votes are kept in your browser only and are not shared with the original gallery.</p>
+
+  <footer class="bridgit-footer">
+    <span class="get">Get Bridgit</span>
+    <a class="storebadge" href="https://bridgit.cc" aria-label="Get it on Google Play">
+      <svg width="16" height="18" viewBox="0 0 24 26" aria-hidden="true"><path fill="#00d2ff" d="M3 2v22l11-11z"/><path fill="#ffe000" d="M14 13L3 2c.3-.2.8-.3 1.3 0l12 6.7z"/><path fill="#ff3a44" d="M14 13l-10.7 9.7c.4.3.9.3 1.4 0l9.3-9.7z" transform="translate(0,1)"/><path fill="#00f076" d="M14 13l3.3-4.3 3.4 1.9c1 .6 1 1.9 0 2.5l-3.4 1.9z"/></svg>
+      <span><span class="l1">GET IT ON</span><span class="l2">Google Play</span></span>
+    </a>
+    <a class="storebadge" href="https://bridgit.cc" aria-label="Download on the App Store">
+      <svg width="15" height="18" viewBox="0 0 384 512" aria-hidden="true"><path fill="#fff" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+      <span><span class="l1">Download on the</span><span class="l2">App Store</span></span>
+    </a>
+  </footer>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="closebtn" id="lbClose" aria-label="Close">&times;</button>
+  <div class="box">
+    <figure class="frame-gilt" style="margin:0"><img id="lbImg" src="" alt=""></figure>
+    <div class="meta">
+      <h3 class="display" id="lbTitle"></h3>
+      <p class="style" id="lbStyle"></p>
+      <p class="note" id="lbNote"></p>
+      <div class="voterow"><span class="count" id="lbCount"></span><button class="vote" id="lbVote"></button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+var PORTRAITS=[
+ {id:"renaissance",src:"karol-renaissance.jpg",title:"Karol I, by the Grace of Treats",style:"Renaissance portrait · 1523 (allegedly)",note:"Ermine-trimmed crimson, a pearl collar, and the motto Fide et Fortitudine — faithful, brave, and first to the food bowl."},
+ {id:"original",src:"karol-original.jpg",title:"The Sitter, As Himself",style:"Photograph · Warsaw",note:"No paint, no costume — just Karol looking up mid-beg. Every portrait on this wall starts from those eyes."},
+ {id:"popart",src:"karol-popart.webp",title:"WOOF!",style:"Pop art · after Lichtenstein",note:"Ben-Day dots, primary colours, and the only word the artist has ever needed to say."},
+ {id:"oil",src:"karol-oil.webp",title:"Study in Oil, with Floorboards",style:"Oil on canvas",note:"The classic pose, elevated: same upward gaze, now with the gravitas of old-master varnish."},
+ {id:"ukiyoe",src:"karol-ukiyoe.jpg",title:"Karol Above the Great Wave",style:"Ukiyo-e woodblock",note:"A traveller on a windy shore, entirely unbothered by the sea. The wave is decorative; the dog is not impressed."},
+ {id:"deco",src:"karol-deco.jpg",title:"The Gilded Hound",style:"Art deco · gold leaf",note:"Karol standing to attention in a sunburst of teal and gold, like the lobby of a very grand hotel."},
+ {id:"stainedglass",src:"karol-stainedglass.webp",title:"Saint Karol of the Sunbeam",style:"Stained glass",note:"Patron saint of afternoon naps and dropped crumbs, rendered in lead and coloured light."},
+ {id:"comic",src:"karol-comic.jpg",title:"Karol: The Leap",style:"Comic book · issue no. 1",note:"Mid-flight over the city, ears back, on urgent business. No villain has ever caught him. No villain has ever tried."},
+ {id:"charcoal",src:"karol-charcoal.jpg",title:"A Quiet Sitting",style:"Charcoal sketch",note:"The softest piece in the collection — Karol at rest, paws crossed, drawn the way he actually spends his days."},
+ {id:"clay",src:"karol-clay.jpg",title:"Karol, in Clay",style:"Claymation still",note:"Hand-modelled and slightly wobbly, the way all the best tributes are. The garden took longer than the dog."},
+ {id:"poster",src:"karol-poster.jpg",title:"Looking for Someone",style:"Vintage travel poster",note:"Suitcase packed, posture perfect. Destination: whoever is holding the treats."},
+ {id:"london",src:"karol-london.jpg",title:"Karol Arrives in London",style:"Watercolour · Heathrow, Terminal Life",note:"Fresh off the flight, suitcase in paw, Big Ben in the distance. He has already been a very good boy at arrivals."}
+];
+var KEY="karol-gallery-web-sample-vote";
+function myVote(){try{return localStorage.getItem(KEY)}catch(e){return null}}
+function setVote(id){try{if(id)localStorage.setItem(KEY,id);else localStorage.removeItem(KEY)}catch(e){}}
+function tallies(){var v=myVote(),t={};PORTRAITS.forEach(function(p){t[p.id]=(v===p.id)?1:0});return t}
+function total(t){var s=0;for(var k in t)s+=t[k];return s}
+function leaders(t){var m=0;for(var k in t)m=Math.max(m,t[k]);if(m===0)return[];return PORTRAITS.filter(function(p){return t[p.id]===m})}
+function heart(on){return on?"♥":"♡"}
+function render(){
+  var t=tallies(),tot=total(t),v=myVote(),lead=leaders(t);
+  /* wall */
+  var wall=document.getElementById("wall");wall.innerHTML="";
+  PORTRAITS.forEach(function(p){
+    var pct=tot?Math.round(t[p.id]/tot*100):0,isLead=lead.indexOf(p)>=0&&tot>0;
+    var d=document.createElement("article");d.className="card";
+    d.innerHTML='<figure class="frame-gilt"><button class="framebtn" data-open="'+p.id+'" aria-label="See '+p.title+' up close"><img loading="lazy" src="'+p.src+'" alt="'+p.title+' — portrait of Karol"></button>'+(isLead?'<span class="badge">'+(lead.length>1?"Tied lead":"Leading")+'</span>':"")+'</figure>'
+      +'<h3 class="display">'+p.title+'</h3><p class="style">'+p.style+'</p><p class="note">'+p.note+'</p>'
+      +'<div class="sharebar"><i style="width:'+pct+'%"></i></div>'
+      +'<div class="voterow"><span class="count">'+t[p.id]+(t[p.id]===1?" vote":" votes")+(tot?" · "+pct+"%":"")+'</span>'
+      +'<button class="vote" data-vote="'+p.id+'" aria-pressed="'+(v===p.id)+'">'+heart(v===p.id)+" "+(v===p.id?"Your favourite":"Vote")+'</button></div>';
+    wall.appendChild(d);
+  });
+  /* spotlight */
+  var spot=lead.length?lead[0]:PORTRAITS[0];
+  document.getElementById("spotImg").src=spot.src;
+  document.getElementById("plaqueName").textContent=spot.title;
+  var badge=document.getElementById("spotBadge");
+  if(tot>0){badge.style.display="";badge.textContent=lead.length>1?"Tied lead":"Leading";
+    document.getElementById("plaqueKicker").textContent=lead.length>1?"Tied for the lead":"Current favourite";
+    document.getElementById("plaqueSub").textContent=t[spot.id]+(t[spot.id]===1?" vote":" votes")+" · "+(tot?Math.round(t[spot.id]/tot*100):0)+"% of the wall.";
+  }else{badge.style.display="none";
+    document.getElementById("plaqueKicker").textContent="Portrait of the season";
+    document.getElementById("plaqueSub").textContent="Awaiting its first vote — the wall is yours to decide.";}
+  document.getElementById("howto").textContent=tot>0
+    ?"You hold one vote — give it to a favourite, tap it again to take it back, or move it whenever a better Karol catches your eye."
+    :"No votes yet — yours could be the first on the wall. You hold one vote — give it to a favourite, tap it again to take it back, or move it whenever a better Karol catches your eye.";
+  /* standings */
+  var st=document.getElementById("standings");
+  if(tot===0){st.innerHTML='<p class="standings-empty">A twelve-way tie at zero — the most diplomatic result in art history. Cast the first vote and break it.</p>'}
+  else{
+    var ranked=PORTRAITS.slice().sort(function(a,b){return t[b.id]-t[a.id]});
+    var ol=document.createElement("ol");ol.className="standings";
+    ranked.forEach(function(p,i){var pct=Math.round(t[p.id]/tot*100);
+      var li=document.createElement("li");
+      li.innerHTML='<span>'+(i+1)+'.</span><img src="'+p.src+'" alt=""><span class="t">'+p.title+'<small>'+p.style+'</small></span>'+(v===p.id?'<span class="yours">Yours</span>':"")+'<span class="count">'+t[p.id]+' · '+pct+'%</span>';
+      ol.appendChild(li)});
+    st.innerHTML="";st.appendChild(ol);
+  }
+  /* lightbox vote state */
+  if(lbCurrent){var p=PORTRAITS.filter(function(x){return x.id===lbCurrent})[0];
+    document.getElementById("lbCount").textContent=t[p.id]+(t[p.id]===1?" vote":" votes");
+    var b=document.getElementById("lbVote");b.setAttribute("aria-pressed",v===p.id);
+    b.textContent=heart(v===p.id)+" "+(v===p.id?"Your favourite":"Vote");}
+}
+var lbCurrent=null;
+function openLb(id){var p=PORTRAITS.filter(function(x){return x.id===id})[0];lbCurrent=id;
+  document.getElementById("lbImg").src=p.src;document.getElementById("lbImg").alt=p.title+" — portrait of Karol";
+  document.getElementById("lbTitle").textContent=p.title;document.getElementById("lbStyle").textContent=p.style;
+  document.getElementById("lbNote").textContent=p.note;
+  document.getElementById("lightbox").classList.add("open");render()}
+function closeLb(){lbCurrent=null;document.getElementById("lightbox").classList.remove("open")}
+function cast(id){setVote(myVote()===id?null:id);render()}
+document.addEventListener("click",function(e){
+  var o=e.target.closest("[data-open]");if(o){openLb(o.getAttribute("data-open"));return}
+  var b=e.target.closest("[data-vote]");if(b){cast(b.getAttribute("data-vote"));return}
+  if(e.target.id==="lightbox"||e.target.id==="lbClose")closeLb();
+});
+document.getElementById("lbVote").addEventListener("click",function(){if(lbCurrent)cast(lbCurrent)});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeLb()});
+render();
+</script>
+</body>
+</html>
