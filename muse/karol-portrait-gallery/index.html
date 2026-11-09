@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Karol's Portrait Gallery</title>
+<title>Karol&rsquo;s Portrait Gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#1a140f; --surface:#2a2015; --surface-alt:#241b11;
@@ -23,7 +24,11 @@
   .spotlight{display:grid;grid-template-columns:1fr;gap:2rem;padding-top:2rem}
   @media(min-width:768px){.spotlight{grid-template-columns:1.15fr 1fr}}
   .spotlight figure{margin:0;position:relative}
-  .spotlight img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/5}
+  .fitframe{position:relative;overflow:hidden;background:#0f0b07}
+  .fitframe .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(22px) brightness(.72);transform:scale(1.25)}
+  .fitframe .fgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+  .spotlight .fitframe{aspect-ratio:4/5}
+  .spotlight figure{margin:0}
   .plaque{margin-top:1.1rem;background:var(--surface);border:1px solid var(--border);
     border-radius:var(--radius);padding:.9rem 1.1rem}
   .plaque .kicker{color:var(--accent);text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;margin:0 0 .3rem}
@@ -34,7 +39,7 @@
     padding:.3rem .6rem;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.4)}
   .sitter h2{margin-top:0}
   .sitter figure{margin:0 0 1rem}
-  .sitter img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
+  .sitter .fitframe{aspect-ratio:4/3}
   .sitter p{color:var(--dim);line-height:1.6}
   .howto{background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--radius);
     padding:.9rem 1.1rem;color:var(--dim);line-height:1.6;font-size:.95rem}
@@ -44,7 +49,7 @@
   @media(min-width:1024px){.wall{grid-template-columns:1fr 1fr 1fr}}
   .card figure{margin:0;position:relative}
   .card button.framebtn{display:block;width:100%;padding:0;background:none;border:none;cursor:pointer}
-  .card img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover}
+  .card .fitframe{aspect-ratio:4/5}
   .card h3{font-size:1.15rem;margin:.9rem 0 .25rem}
   .card .style{color:var(--accent);text-transform:uppercase;letter-spacing:.12em;font-size:.7rem;margin:0 0 .5rem}
   .card .note{color:var(--dim);line-height:1.55;font-size:.94rem;margin:0 0 .8rem}
@@ -59,11 +64,23 @@
   ol.standings{list-style:none;margin:0;padding:0}
   ol.standings li{display:flex;align-items:center;gap:.9rem;background:var(--surface);
     border:1px solid var(--border);border-radius:var(--radius);padding:.55rem .9rem;margin-bottom:.55rem}
-  ol.standings img{width:40px;height:50px;object-fit:cover}
+  ol.standings .thumb{position:relative;width:40px;height:50px;flex:none;overflow:hidden}
+  ol.standings .thumb img{position:absolute;inset:0;width:100%;height:100%}
+  ol.standings .thumb .bgimg{object-fit:cover;filter:blur(6px) brightness(.72);transform:scale(1.3)}
+  ol.standings .thumb .fgimg{object-fit:contain}
   ol.standings .t{flex:1}
   ol.standings .t small{display:block;color:var(--dim)}
   .yours{color:var(--accent);font-size:.78rem;text-transform:uppercase;letter-spacing:.1em}
   .closing{color:var(--dim);font-style:italic;margin-top:3rem;line-height:1.6}
+  .applet-rating{margin-top:1.2rem;background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius);padding:.9rem 1.1rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+  .applet-rating .rlabel{font-weight:700}
+  .applet-rating .pill{display:inline-block;background:#0a8f4e;color:#fff;font-weight:700;border-radius:999px;
+    padding:.22rem .85rem;font-size:.95rem;font-family:"Archivo Narrow","Arial Narrow",Arial,sans-serif;font-stretch:condensed}
+  .applet-rating .num{font-size:1.35rem;font-weight:800}
+  .applet-rating .num .denom{font-size:.58em;font-weight:600;color:var(--dim)}
+  .applet-rating .rsrc{color:var(--dim);font-size:.9rem}
+  .applet-rating a{color:var(--accent)}
   .sample-note{color:var(--dim);font-size:.85rem;border-top:1px solid var(--border);
     margin-top:2.5rem;padding-top:1.2rem;line-height:1.6}
   /* Bridgit footer (standard for applet pages on the web) */
@@ -80,6 +97,7 @@
   .lightbox.open{display:flex}
   .lightbox .box{max-width:30rem;width:100%;max-height:92vh;overflow:auto}
   .lightbox img{width:100%;display:block}
+  .lightbox .box>figure img{max-height:70vh;object-fit:contain;background:#0f0b07}
   .lightbox .meta{background:var(--surface);padding:1rem 1.2rem;margin-top:1rem;border-radius:var(--radius)}
   .lightbox h3{margin:.2rem 0 .3rem}
   .lightbox .style{color:var(--accent);text-transform:uppercase;letter-spacing:.12em;font-size:.7rem;margin:0 0 .5rem}
@@ -93,8 +111,9 @@
 
   <div class="spotlight">
     <div>
-      <figure class="frame-gilt">
-        <img id="spotImg" src="karol-renaissance.jpg" alt="Karol I, by the Grace of Treats — Renaissance portrait of Karol">
+      <figure class="frame-gilt fitframe">
+        <img class="bgimg" id="spotBg" src="karol-renaissance.jpg" alt="" aria-hidden="true">
+        <img class="fgimg" id="spotImg" src="karol-renaissance.jpg" alt="Karol I, by the Grace of Treats — Renaissance portrait of Karol">
         <span class="badge" id="spotBadge" style="display:none"></span>
       </figure>
       <div class="plaque">
@@ -106,10 +125,11 @@
     <div class="sitter">
       <h1 class="display">One very good dog, twelve ways of seeing him.</h1>
       <p class="intro">Karol — black coat, amber eyes, professional napper — sat for a whole wall of portraits: Renaissance noble, pop-art star, stained-glass saint, claymation puppy. Walk the gallery, tap a frame to see it up close, and vote for the one that deserves the gilt.</p>
-      <figure class="frame-gilt"><img src="karol-original.jpg" alt="The real Karol, photographed at home"></figure>
+      <figure class="frame-gilt fitframe"><img class="bgimg" src="karol-original.jpg" alt="" aria-hidden="true"><img class="fgimg" src="karol-original.jpg" alt="The real Karol, photographed at home"></figure>
       <h2 class="display">Meet the sitter</h2>
       <p>The real Karol, photographed at home — the face every artist on this wall was chasing. Lately he can mostly be found asleep, which the charcoal study captures honestly.</p>
       <div class="howto" id="howto">No votes yet — yours could be the first on the wall. You hold one vote — give it to a favourite, tap it again to take it back, or move it whenever a better Karol catches your eye.</div>
+      <div class="applet-rating"><span class="rlabel">Rating:</span> <span class="pill">Highly recommend</span> <span class="num">7.8 <span class="denom">/10</span></span> <span class="rsrc">— the gallery applet&rsquo;s rating from <a href="../bridgit-sample-reviews/muse/">Almusca&rsquo;s Karol Watch review</a> (Meta Muse)</span></div>
     </div>
   </div>
 
@@ -178,7 +198,7 @@ function render(){
   PORTRAITS.forEach(function(p){
     var pct=tot?Math.round(t[p.id]/tot*100):0,isLead=lead.indexOf(p)>=0&&tot>0;
     var d=document.createElement("article");d.className="card";
-    d.innerHTML='<figure class="frame-gilt"><button class="framebtn" data-open="'+p.id+'" aria-label="See '+p.title+' up close"><img loading="lazy" src="'+p.src+'" alt="'+p.title+' — portrait of Karol"></button>'+(isLead?'<span class="badge">'+(lead.length>1?"Tied lead":"Leading")+'</span>':"")+'</figure>'
+    d.innerHTML='<figure class="frame-gilt"><button class="framebtn" data-open="'+p.id+'" aria-label="See '+p.title+' up close"><span class="fitframe" style="display:block"><img class="bgimg" loading="lazy" src="'+p.src+'" alt="" aria-hidden="true"><img class="fgimg" loading="lazy" src="'+p.src+'" alt="'+p.title+' — portrait of Karol"></span></button>'+(isLead?'<span class="badge">'+(lead.length>1?"Tied lead":"Leading")+'</span>':"")+'</figure>'
       +'<h3 class="display">'+p.title+'</h3><p class="style">'+p.style+'</p><p class="note">'+p.note+'</p>'
       +'<div class="sharebar"><i style="width:'+pct+'%"></i></div>'
       +'<div class="voterow"><span class="count">'+t[p.id]+(t[p.id]===1?" vote":" votes")+(tot?" · "+pct+"%":"")+'</span>'
@@ -188,6 +208,7 @@ function render(){
   /* spotlight */
   var spot=lead.length?lead[0]:PORTRAITS[0];
   document.getElementById("spotImg").src=spot.src;
+  document.getElementById("spotBg").src=spot.src;
   document.getElementById("plaqueName").textContent=spot.title;
   var badge=document.getElementById("spotBadge");
   if(tot>0){badge.style.display="";badge.textContent=lead.length>1?"Tied lead":"Leading";
@@ -207,7 +228,7 @@ function render(){
     var ol=document.createElement("ol");ol.className="standings";
     ranked.forEach(function(p,i){var pct=Math.round(t[p.id]/tot*100);
       var li=document.createElement("li");
-      li.innerHTML='<span>'+(i+1)+'.</span><img src="'+p.src+'" alt=""><span class="t">'+p.title+'<small>'+p.style+'</small></span>'+(v===p.id?'<span class="yours">Yours</span>':"")+'<span class="count">'+t[p.id]+' · '+pct+'%</span>';
+      li.innerHTML='<span>'+(i+1)+'.</span><span class="thumb"><img class="bgimg" src="'+p.src+'" alt="" aria-hidden="true"><img class="fgimg" src="'+p.src+'" alt=""></span><span class="t">'+p.title+'<small>'+p.style+'</small></span>'+(v===p.id?'<span class="yours">Yours</span>':"")+'<span class="count">'+t[p.id]+' · '+pct+'%</span>';
       ol.appendChild(li)});
     st.innerHTML="";st.appendChild(ol);
   }

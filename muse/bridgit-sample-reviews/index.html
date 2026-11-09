@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Three sample Bridgit reviews — Muse, Claude and ChatGPT</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#fff;--panel:#f6f7f8;--panel2:#eef0f2;--ink:#111;--body:#1f2328;--mut:#5f6770;--acc:#0a8f4e;--blue:#2f6bff;--line:#e3e6e9}
   *{box-sizing:border-box}
@@ -31,6 +32,12 @@
   footer{color:var(--mut);font-size:.88rem;margin-top:2.5rem;border-top:1px solid var(--line);padding-top:1rem}
   a{color:var(--blue)}
   @media(max-width:640px){.cardtop{flex-direction:column}.card img{width:100%;height:auto}}
+
+  /* Hub rating display — new format (2026-11-09) */
+  .chip{font-family:"Archivo Narrow","Arial Narrow",Arial,sans-serif;font-stretch:condensed;letter-spacing:.02em}
+  .card .score{font-weight:800;color:var(--ink)}
+  .card .score .denom{font-size:.62em;font-weight:600;color:var(--mut)}
+  .card .score .rlabel{font-size:.62em;font-weight:600;color:var(--mut);letter-spacing:.03em}
 </style>
 </head>
 <body>
@@ -49,7 +56,7 @@
       <img src="muse/evidence-rear.jpg" alt="Hyper-realistic editorial view from the Karol Watch pet monitor">
       <div>
         <h2><a href="muse/">The dog monitor that made me feel like I had a body in the room</a></h2>
-        <p><span class="chip">Highly recommend</span> &nbsp;<strong>7.8 /10</strong></p>
+        <p><span class="chip">Highly recommend</span> &nbsp;<span class="score"><span class="rlabel">Rating:</span> 7.8 <span class="denom">/10</span></span></p>
       </div>
     </div>
     <p><strong>Karol Watch</strong> — a pet monitor that watches a dog through a tablet and a home camera, and reports honestly, including the 95% of frames where nothing is there.</p>
@@ -63,7 +70,7 @@
       <img src="claude/scene-doorstep.jpg" alt="Black-and-white charcoal sketch of a doorstep with a parcel">
       <div>
         <h2><a href="claude/">A polite doorman for a house that has no staff</a></h2>
-        <p><span class="chip">Recommend</span> &nbsp;<strong>7.4 /10</strong></p>
+        <p><span class="chip">Recommend</span> &nbsp;<span class="score"><span class="rlabel">Rating:</span> 7.4 <span class="denom">/10</span></span></p>
       </div>
     </div>
     <p><strong>Doorstep Greetings &amp; Packages</strong> — a doorstep announcer for a small rental property: parcels announced, guests greeted by name, strangers politely notified that the owner has their picture.</p>
@@ -77,7 +84,7 @@
       <img src="chatgpt/scene-greenhouse.jpg" alt="Flat colorful poster-style illustration of a greenhouse">
       <div>
         <h2><a href="chatgpt/">A night watchman for plants that can't shout</a></h2>
-        <p><span class="chip res">Recommend with reservations</span> &nbsp;<strong>6.8 /10</strong></p>
+        <p><span class="chip res">Recommend with reservations</span> &nbsp;<span class="score"><span class="rlabel">Rating:</span> 6.8 <span class="denom">/10</span></span></p>
       </div>
     </div>
     <p><strong>Greenhouse Guardian</strong> — a sentinel for temperature-sensitive plants and a sauna, excellent by day, and candid about the two nights its phone slept through the 3 a.m. check.</p>
@@ -97,6 +104,7 @@
         </div>
       </div>
       <p>This one is <strong>not a review</strong>: it is a sample of the webpage an applet generates for itself — the gallery wall, the standings, and voting (on this web copy, votes are kept in your browser only). It shows what a Bridgit applet&rsquo;s own page looks like on the open web.</p>
+      <p><span class="chip">Highly recommend</span> &nbsp;<span class="score"><span class="rlabel">Gallery applet rating:</span> 7.8 <span class="denom">/10</span></span> <span style="color:var(--mut);font-size:.9rem">— from <a href="muse/">Almusca&rsquo;s Karol Watch review</a>, where the gallery applet was reviewed</span></p>
       <p><a class="read" href="../karol-portrait-gallery/">Visit the gallery &rarr;</a></p>
     </div>
   </section>
