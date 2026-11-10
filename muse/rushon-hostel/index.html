@@ -39,6 +39,20 @@ ol,ul{padding-left:22px}
 footer{text-align:center;color:var(--muted);padding:0 18px 40px;font-size:.92em}
 .tag{display:inline-block;background:#e6f0e9;color:var(--accent);border-radius:999px;padding:3px 11px;font-size:.85em;font-weight:600;margin-bottom:10px}
 section.guide .tag{background:#dbe9ff;color:var(--accent2)}
+/* --- Visual layer: all artwork is inline SVG (no external files, cannot 404) --- */
+.hero-art{line-height:0;background:#0e2c47}
+.hero-art svg{width:100%;height:auto;display:block}
+figure.art{margin:18px 0}
+figure.art svg{width:100%;height:auto;display:block;border-radius:12px}
+figure.art figcaption,.cap{color:var(--muted);font-size:.88em;margin-top:6px;text-align:center}
+.gallery{display:grid;grid-template-columns:1fr;gap:16px;margin:18px 0 6px}
+@media(min-width:640px){.gallery{grid-template-columns:1fr 1fr}}
+.gallery figure{margin:0}
+.gallery svg{width:100%;height:auto;display:block;border-radius:12px;box-shadow:0 3px 12px rgba(20,40,30,.12)}
+.gallery figcaption{color:var(--muted);font-size:.88em;margin-top:6px;text-align:center}
+h2{border-left:6px solid var(--accent);padding-left:12px}
+section.guide h2{border-left-color:var(--accent2)}
+img,svg{max-width:100%}
 </style>
 </head>
 <body>
@@ -47,6 +61,33 @@ section.guide .tag{background:#dbe9ff;color:var(--accent2)}
   <p>Хулосаи намоиши зинда: меҳмонхонаи фарзӣ дар Рушон, кӯҳҳои Помир</p>
   <p class="en">A live Muse demo in Tajik — a hypothetical hostel in Rushon, in the Pamir Mountains, Tajikistan</p>
 </header>
+<div class="hero-art" role="img" aria-label="Панорамаи графикӣ: дарёи Панҷ дар байни кӯҳҳои Помир дар наздикии Рушон">
+<svg viewBox="0 0 1200 440" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+<defs>
+<linearGradient id="hsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe0f5"/><stop offset=".62" stop-color="#e9f2e4"/><stop offset="1" stop-color="#fdf0cd"/></linearGradient>
+<linearGradient id="hriv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc0dc"/><stop offset="1" stop-color="#4b9dc4"/></linearGradient>
+</defs>
+<rect width="1200" height="440" fill="url(#hsky)"/>
+<circle cx="985" cy="78" r="40" fill="#ffd964" opacity=".9"/>
+<path d="M0 210 L120 92 L215 168 L330 58 L445 176 L560 84 L672 190 L790 66 L905 178 L1015 96 L1200 205 L1200 440 L0 440 Z" fill="#9fb4cc"/>
+<path d="M330 58 L372 100 L344 118 L318 96 L296 116 L282 96 Z M790 66 L826 102 L800 118 L776 100 L756 116 L744 94 Z M120 92 L150 122 L128 134 L104 118 L88 130 L80 112 Z" fill="#ffffff"/>
+<path d="M0 262 L150 168 L300 246 L452 150 L610 252 L770 162 L930 250 L1080 172 L1200 238 L1200 440 L0 440 Z" fill="#66809c"/>
+<path d="M0 318 L190 238 L372 306 L560 226 L748 310 L940 240 L1200 312 L1200 440 L0 440 Z" fill="#7a6a4d"/>
+<path d="M0 352 L240 292 L470 342 L720 288 L960 344 L1200 300 L1200 440 L0 440 Z" fill="#527a52"/>
+<path d="M60 356 L300 322 L330 338 L90 372 Z M120 380 L340 350 L366 364 L150 396 Z" fill="#8fbf6f" opacity=".85"/>
+<path d="M820 330 L1080 306 L1110 322 L850 348 Z M860 356 L1100 336 L1124 350 L890 372 Z" fill="#d9b45c" opacity=".8"/>
+<g fill="#f3ead8" stroke="#8a6f4d" stroke-width="2">
+<rect x="902" y="300" width="26" height="18"/><rect x="936" y="294" width="30" height="20"/><rect x="972" y="302" width="24" height="16"/><rect x="856" y="310" width="22" height="15"/>
+</g>
+<g fill="#b5533c"><path d="M898 300 L915 288 L932 300 Z"/><path d="M932 294 L951 282 L970 294 Z"/><path d="M968 302 L984 291 L1000 302 Z"/><path d="M852 310 L867 300 L882 310 Z"/></g>
+<g fill="#2e5d3a"><circle cx="845" cy="318" r="10"/><circle cx="1015" cy="318" r="12"/><circle cx="1045" cy="308" r="9"/><circle cx="70" cy="330" r="11"/><circle cx="105" cy="318" r="8"/></g>
+<path d="M0 372 C220 356 380 388 620 376 C860 364 1020 390 1200 374 L1200 440 L0 440 Z" fill="url(#hriv)"/>
+<path d="M0 402 C260 388 520 412 800 398 C960 390 1080 402 1200 394 L1200 440 L0 440 Z" fill="#8fcbe4" opacity=".8"/>
+<path d="M140 388 C300 380 420 396 560 390" stroke="#eaf7fd" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/>
+<path d="M700 410 C820 402 940 414 1060 406" stroke="#eaf7fd" stroke-width="5" fill="none" stroke-linecap="round" opacity=".7"/>
+<path d="M30 366 C260 344 520 350 760 336" stroke="#e8dcc0" stroke-width="4" fill="none" stroke-dasharray="10 8" opacity=".75"/>
+</svg>
+</div>
 <main>
 
 <!-- ============ AT THE VERY TOP: AI SETUP GUIDE, ALL IN TAJIK ============ -->
@@ -137,6 +178,26 @@ section.guide .tag{background:#dbe9ff;color:var(--accent2)}
   <p>Дар Помир меъёри асосӣ ин аст: меҳмон дар ҷое ки хоб мекунад, хӯрок низ мехӯрад — нарх одатан хӯроки шом ва наҳориро дар бар мегирад (half-board). Хӯрокҳои маъмул: нон, ширчой, оши палав, қурутоб, шӯрбо, манту, ва зардолу ва тути хушк. Дар тадқиқот ягон тарабхона ё чойхонаи номдор дар Рушон бо соатҳои корӣ ҳуҷҷат нашудааст — соатҳоро дар ҷой санҷед.</p>
   <p class="en">Food norm in the Pamirs: homestay half-board — non, shirchoy, osh/plov, qurutob, shurbo, mantu, dried apricots and mulberries. No named restaurant or chaikhana with documented hours was found in Rushon.</p>
 
+  <figure class="art">
+    <svg viewBox="0 0 860 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Дастархон: оши палав, нон ва чой — тасвири графикӣ">
+    <rect width="860" height="340" fill="#7a2e35"/>
+    <g fill="#94353f"><rect x="0" y="0" width="860" height="42"/><rect x="0" y="298" width="860" height="42"/></g>
+    <g fill="#e9c46a" opacity=".85"><circle cx="40" cy="21" r="7"/><circle cx="120" cy="21" r="7"/><circle cx="200" cy="21" r="7"/><circle cx="280" cy="21" r="7"/><circle cx="360" cy="21" r="7"/><circle cx="440" cy="21" r="7"/><circle cx="520" cy="21" r="7"/><circle cx="600" cy="21" r="7"/><circle cx="680" cy="21" r="7"/><circle cx="760" cy="21" r="7"/><circle cx="830" cy="21" r="7"/><circle cx="40" cy="319" r="7"/><circle cx="120" cy="319" r="7"/><circle cx="200" cy="319" r="7"/><circle cx="280" cy="319" r="7"/><circle cx="360" cy="319" r="7"/><circle cx="440" cy="319" r="7"/><circle cx="520" cy="319" r="7"/><circle cx="600" cy="319" r="7"/><circle cx="680" cy="319" r="7"/><circle cx="760" cy="319" r="7"/><circle cx="830" cy="319" r="7"/></g>
+    <ellipse cx="430" cy="176" rx="196" ry="86" fill="#f7f3e8"/>
+    <ellipse cx="430" cy="168" rx="176" ry="74" fill="#fdfaf1"/>
+    <ellipse cx="430" cy="164" rx="150" ry="58" fill="#e8a33d"/>
+    <g stroke="#d3542e" stroke-width="6" stroke-linecap="round"><path d="M330 148 L392 160"/><path d="M368 178 L438 166"/><path d="M452 150 L520 162"/><path d="M330 176 L388 186"/><path d="M470 182 L536 172"/></g>
+    <g fill="#8a4b23"><ellipse cx="398" cy="140" rx="26" ry="16"/><ellipse cx="472" cy="146" rx="24" ry="15"/><ellipse cx="434" cy="182" rx="22" ry="13"/></g>
+    <g><circle cx="148" cy="150" r="52" fill="#e9c07a"/><circle cx="148" cy="150" r="40" fill="#f2d193"/><g fill="#b5762f"><circle cx="132" cy="138" r="4"/><circle cx="160" cy="134" r="4"/><circle cx="148" cy="156" r="4"/><circle cx="126" cy="162" r="4"/><circle cx="166" cy="160" r="4"/></g></g>
+    <g><path d="M676 96 C716 84 742 108 738 140 C734 172 706 190 678 184 L668 150 Z" fill="#2f6f8f"/><path d="M700 92 C726 98 738 116 736 138" stroke="#2f6f8f" stroke-width="9" fill="none"/><rect x="676" y="76" width="34" height="14" rx="5" fill="#265a75"/><g fill="#f7f3e8"><circle cx="690" cy="126" r="6"/><circle cx="706" cy="146" r="6"/><circle cx="684" cy="160" r="5"/></g></g>
+    <g><ellipse cx="700" cy="238" rx="42" ry="20" fill="#f7f3e8"/><path d="M664 232 C664 258 736 258 736 232 C722 244 678 244 664 232 Z" fill="#fdfaf1"/><ellipse cx="700" cy="230" rx="30" ry="11" fill="#c96f2e"/></g>
+    <g><ellipse cx="158" cy="248" rx="42" ry="20" fill="#f7f3e8"/><path d="M122 242 C122 268 194 268 194 242 C180 254 136 254 122 242 Z" fill="#fdfaf1"/><ellipse cx="158" cy="240" rx="30" ry="11" fill="#c96f2e"/></g>
+    <g fill="#e07b2a"><circle cx="586" cy="96" r="10"/><circle cx="612" cy="110" r="9"/><circle cx="566" cy="114" r="8"/></g>
+    <g fill="#7a4a8c"><circle cx="252" cy="96" r="9"/><circle cx="276" cy="108" r="8"/><circle cx="238" cy="116" r="7"/></g>
+    </svg>
+    <figcaption>Дастархон: оши палав, нон, ширчой ва меваҳои хушк — тасвири графикӣ (иллюстратсия)</figcaption>
+  </figure>
+
   <h3>Мусиқӣ ва рақс: барномаи доимии оммавӣ вуҷуд надорад</h3>
   <p>Дар тадқиқот <strong>ягон барномаи доимии оммавии мусиқӣ ё рақс дар Рушон ҳуҷҷат нашудааст</strong> — на рӯз, на соат, на ҷой, на чипта. Дар намоиши аввал ҷадвалҳое мисол оварда шуданд (масалан, «Хонаи фарҳанг, ҷумъа ва шанбе, соати 19:00» ва «мусиқӣ дар бозор рӯзи якшанбе») — <strong>онҳо мисолҳои сохта буданд, на факт, ва дар ин ҷо нест карда шуданд.</strong></p>
   <p>Мусиқии ҳақиқии маҳаллӣ чунин аст: маддоҳ ва қасида, фалак, ва рақси Рапо — дар хонаҳо, дар ҷамъомадҳои хонаводагӣ, дар тӯйҳо, дар ҷамъомадҳои рӯзи панҷшанбе ва дар маросимҳои дигар. Ба меҳмонон танҳо инро пешниҳод кардан мумкин аст: <strong>бо дархост, агар навозандагони маҳаллӣ розӣ шаванд, мусиқии хусусии хонагӣ бо пардохти одилона</strong> — ҳар дафъа алоҳида, ҳеҷ гоҳ кафолат дода намешавад. Мусиқии динӣ ва маросимиро ҳамчун «фароғат» нафурӯшед.</p>
@@ -163,6 +224,47 @@ section.guide .tag{background:#dbe9ff;color:var(--accent2)}
     <li><strong>Роҳи Бартанг:</strong> тақрибан 300 км то Қаракӯл, аз назди тақрибан 25 деҳа мегузарад.</li>
     <li><strong>Роҳи калони Помир, M41:</strong> Душанбе — Рушон як рӯзи пурра ва душвор дар роҳ аст.</li>
   </ul>
+
+  <div class="gallery">
+    <figure>
+      <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Кӯлҳои Ҷизев — тасвири графикӣ">
+      <defs><linearGradient id="jsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aedcf7"/><stop offset="1" stop-color="#eef7e9"/></linearGradient>
+      <linearGradient id="jlake" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#37b6c9"/><stop offset="1" stop-color="#1d7f96"/></linearGradient></defs>
+      <rect width="600" height="400" fill="url(#jsky)"/>
+      <path d="M0 190 L110 84 L205 156 L310 60 L420 164 L505 96 L600 176 L600 400 L0 400 Z" fill="#8ba3bd"/>
+      <path d="M310 60 L340 90 L318 104 L296 88 L278 102 L268 84 Z M110 84 L134 108 L114 118 L96 104 L84 114 L78 98 Z" fill="#fff"/>
+      <path d="M0 238 L140 168 L290 226 L440 164 L600 232 L600 400 L0 400 Z" fill="#77684c"/>
+      <path d="M0 282 L600 268 L600 400 L0 400 Z" fill="#5d8a54"/>
+      <ellipse cx="300" cy="330" rx="235" ry="52" fill="url(#jlake)"/>
+      <path d="M120 322 C220 312 380 314 480 324" stroke="#cfeeF7" stroke-width="5" fill="none" opacity=".65" stroke-linecap="round"/>
+      <path d="M180 348 C280 340 400 342 470 348" stroke="#cfeef7" stroke-width="4" fill="none" opacity=".5" stroke-linecap="round"/>
+      <g fill="#f3ead8" stroke="#8a6f4d" stroke-width="2"><rect x="52" y="252" width="24" height="16"/><rect x="82" y="246" width="28" height="18"/><rect x="470" y="240" width="26" height="17"/></g>
+      <g fill="#b5533c"><path d="M49 252 L64 241 L79 252 Z"/><path d="M79 246 L96 234 L113 246 Z"/><path d="M467 240 L483 229 L499 240 Z"/></g>
+      <g fill="#2e5d3a"><circle cx="130" cy="262" r="10"/><circle cx="452" cy="256" r="9"/><circle cx="520" cy="262" r="11"/></g>
+      </svg>
+      <figcaption>Кӯлҳои Ҷизев, водии Бартанг — тасвири графикӣ (иллюстратсия)</figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Роҳи водии Бартанг — тасвири графикӣ">
+      <defs><linearGradient id="bsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe0f5"/><stop offset="1" stop-color="#fdf0cd"/></linearGradient>
+      <linearGradient id="briv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#79bcd9"/><stop offset="1" stop-color="#4b9dc4"/></linearGradient></defs>
+      <rect width="600" height="400" fill="url(#bsky)"/>
+      <circle cx="508" cy="62" r="30" fill="#ffd964" opacity=".9"/>
+      <path d="M0 150 L130 60 L250 138 L380 48 L600 150 L600 400 L0 400 Z" fill="#a08b62"/>
+      <path d="M380 48 L406 74 L386 86 L366 70 L352 82 L344 66 Z" fill="#fff"/>
+      <path d="M0 400 L0 210 L170 268 L150 400 Z" fill="#8a6f4d"/>
+      <path d="M600 400 L600 196 L428 262 L452 400 Z" fill="#77603f"/>
+      <path d="M150 400 C190 330 250 356 300 322 C350 288 402 306 452 262 L452 400 Z" fill="url(#briv)"/>
+      <path d="M0 400 L0 300 C90 318 130 344 168 386 L176 400 Z" fill="#c9b088"/>
+      <path d="M600 400 L600 292 C512 310 474 332 440 372 L434 400 Z" fill="#c9b088"/>
+      <path d="M6 306 C84 322 124 346 158 384" stroke="#efe3c2" stroke-width="5" fill="none" stroke-dasharray="9 7"/>
+      <g transform="translate(88 330) rotate(24)"><rect x="0" y="0" width="30" height="14" rx="4" fill="#d84f35"/><rect x="6" y="-7" width="16" height="9" rx="3" fill="#f2f2f2"/><circle cx="7" cy="15" r="4" fill="#26303a"/><circle cx="23" cy="15" r="4" fill="#26303a"/></g>
+      <g fill="#f3ead8" stroke="#8a6f4d" stroke-width="2"><rect x="492" y="252" width="22" height="14"/><rect x="518" y="246" width="26" height="16"/></g>
+      <g fill="#b5533c"><path d="M489 252 L503 242 L517 252 Z"/><path d="M515 246 L531 235 L547 246 Z"/></g>
+      </svg>
+      <figcaption>Роҳи водии Бартанг — тасвири графикӣ (иллюстратсия)</figcaption>
+    </figure>
+  </div>
 
   <h3>Мавсим</h3>
   <p>Беҳтарин мавсим: аз нимаи июн то сентябр; авҷи он: июл ва август. Дар зимистон, аз ноябр то март, аксари меҳмонхонаҳои хонагӣ баста мешаванд.</p>
@@ -207,6 +309,22 @@ section.guide .tag{background:#dbe9ff;color:var(--accent2)}
   <span class="tag">Ғояҳои кор — ҳозир оғоз кунед</span>
   <h2>Ҳозир оғоз кунед — бе бино, бе замин</h2>
   <p>Барои оғоз кардан дар меҳмондорӣ, интизор шудан лозим нест, то замин, бино ё иҷозатномаи сохтмон пайдо шавад. Шумо метавонед <strong>ҳозир, аз Полша</strong>, оғоз кунед: ба меҳмонхонаҳои мавҷуда занг занед, нависед ва барои онҳо «пешхонаи» рақамӣ шавед — он қисме, ки бо меҳмонон ва меҳмонони оянда гап мезанад. Зеҳни сунъӣ корро тез мекунад, аммо шумо сарвари инсонӣ мемонед.</p>
+
+  <figure class="art">
+    <svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Варшава — тасвири графикӣ">
+    <defs><linearGradient id="wsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fb2dd"/><stop offset="1" stop-color="#f6d9a8"/></linearGradient></defs>
+    <rect width="860" height="300" fill="url(#wsky)"/>
+    <circle cx="742" cy="52" r="28" fill="#ffd964" opacity=".9"/>
+    <g fill="#5b7186"><rect x="560" y="96" width="42" height="130"/><rect x="622" y="76" width="36" height="150"/><rect x="676" y="110" width="48" height="116"/><rect x="742" y="88" width="34" height="138"/></g>
+    <g fill="#41576b"><rect x="392" y="52" width="54" height="174"/><path d="M414 52 L419 14 L424 52 Z"/><rect x="404" y="86" width="30" height="10" fill="#f6d9a8"/><rect x="404" y="116" width="30" height="10" fill="#f6d9a8"/><rect x="404" y="146" width="30" height="10" fill="#f6d9a8"/></g>
+    <rect x="0" y="226" width="860" height="10" fill="#3d5a73"/>
+    <g><rect x="30" y="176" width="70" height="52" fill="#e8dcc8"/><path d="M24 176 L65 148 L106 176 Z" fill="#b5533c"/><rect x="112" y="168" width="76" height="60" fill="#dfc9a8"/><path d="M106 168 L150 138 L194 168 Z" fill="#a3472f"/><rect x="200" y="180" width="66" height="48" fill="#e8dcc8"/><path d="M194 180 L233 154 L272 180 Z" fill="#b5533c"/><rect x="486" y="182" width="64" height="46" fill="#e8dcc8"/><path d="M480 182 L518 156 L556 182 Z" fill="#b5533c"/></g>
+    <g fill="#f6d9a8"><rect x="46" y="192" width="10" height="12"/><rect x="72" y="192" width="10" height="12"/><rect x="130" y="186" width="10" height="12"/><rect x="156" y="186" width="10" height="12"/><rect x="216" y="194" width="10" height="12"/></g>
+    <path d="M0 258 C180 246 360 268 540 256 C680 247 780 260 860 252 L860 300 L0 300 Z" fill="#4b9dc4"/>
+    <path d="M60 276 C200 268 340 282 470 274" stroke="#eaf7fd" stroke-width="4" fill="none" opacity=".7" stroke-linecap="round"/>
+    </svg>
+    <figcaption>Варшава, Полша — шумо аз ин ҷо оғоз мекунед (тасвири графикӣ)</figcaption>
+  </figure>
 
   <h3>Ғояи 1 — «Пешхонаи AI» ҳамчун хизмат барои меҳмонхонаҳои мавҷуда</h3>
   <p>Ба меҳмонхонаҳои Рушон, Хоруғ ва Бартанг пешниҳод кунед — масалан, Rushon Inn, Muborak, Bidzad. <strong>Ба онҳо муроҷиат кунед; ҳоло бо онҳо ҳеҷ шарикӣ нест</strong> — ин пешниҳоди шумост, на созиши тайёр.</p>
@@ -286,7 +404,7 @@ section.guide .tag{background:#dbe9ff;color:var(--accent2)}
 
 </main>
 <footer>
-  <p>Ин саҳифа хулосаи намоиши зиндаи Muse ба забони тоҷикӣ (10 ноябри 2026) ва тадқиқоти амиқи баъдӣ дар бораи Рушон аст.<br>
+  <p>Ин саҳифа хулосаи намоиши зиндаи Muse ба забони тоҷикӣ (10 ноябри 2026) ва тадқиқоти амиқи баъдӣ дар бораи Рушон аст. Тасвирҳои ин саҳифа иллюстратсияҳои графикӣ мебошанд, на аксҳои ҳақиқӣ.<br>
   <span class="en">This page summarises a live Muse demo in Tajik held on 10 November 2026, plus the follow-up deep research on Rushon. The Rushon hostel is hypothetical.</span></p>
 </footer>
 </body>
