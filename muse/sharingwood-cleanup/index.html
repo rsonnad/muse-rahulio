@@ -30,12 +30,15 @@
   .quote-grid b{display:block;color:#9a3412;margin-bottom:2px}
   p{margin:8px 0;text-wrap:pretty}
   .note{font-size:14px;color:#4b5563}
-  /* Photo gallery: add photos by dropping files into img/ and adding
-     <figure><img src="img/photo-1.jpg" alt=""></figure> inside .gallery */
-  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
   .gallery figure{margin:0}
-  .gallery img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block}
-  .photos-empty{grid-column:1/-1;text-align:center;color:#6b7280;font-size:15px;padding:28px 10px;border:1.5px dashed #c9d2c6;border-radius:12px;background:#fafbfa}
+  .gallery a{display:block;border-radius:12px;overflow:hidden}
+  .gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+  .gallery figcaption{font-size:13px;color:#4b5563;padding:5px 2px 0;text-wrap:pretty}
+  .lightbox{position:fixed;inset:0;background:rgba(10,15,10,.92);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:50;padding:16px;cursor:zoom-out}
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:96vw;max-height:84vh;border-radius:10px}
+  .lightbox p{color:#e5e7eb;margin:10px 0 0;font-size:15px;text-align:center}
   .map iframe{width:100%;height:320px;max-height:400px;border:0;border-radius:12px;display:block}
   .btn{display:inline-block;margin-top:12px;background:#15803d;color:#fff;text-decoration:none;font-weight:700;padding:11px 18px;border-radius:999px;font-size:15px}
   .btn.secondary{background:#fff;color:#14532d;border:1.5px solid #15803d}
@@ -50,7 +53,7 @@
   <header>
     <h1>Sharingwood Unit&nbsp;1B — Cleanup for Rental&nbsp;Showing</h1>
     <p class="subtitle">Clean it, tidy it, make it shine</p>
-    <p class="stamp">v1.0 · Nov 18, 2026</p>
+    <p class="stamp">v1.1 · Nov 18, 2026</p>
   </header>
 
   <section class="card">
@@ -83,11 +86,50 @@
   </section>
 
   <section class="card">
-    <h2>Current state — photos from the contractor</h2>
+    <h2>Current state — photos from the contractor, Nov 14, 2026</h2>
+    <p class="note">Renovation complete — cleanup for showing still needed. Tap any photo to enlarge.</p>
     <div class="gallery">
-      <div class="photos-empty">Photos loading — check back shortly</div>
+      <figure><a href="img/01-wide-kitchen-slatted-ceiling.jpg"><img src="img/01-wide-kitchen-slatted-ceiling.jpg" alt="Kitchen" loading="lazy"></a><figcaption>Kitchen</figcaption></figure>
+      <figure><a href="img/02-kitchenette-sink-slow-cooker.jpg"><img src="img/02-kitchenette-sink-slow-cooker.jpg" alt="Kitchen" loading="lazy"></a><figcaption>Kitchen</figcaption></figure>
+      <figure><a href="img/03-kitchen-counter-window-stove.jpg"><img src="img/03-kitchen-counter-window-stove.jpg" alt="Kitchen" loading="lazy"></a><figcaption>Kitchen</figcaption></figure>
+      <figure><a href="img/04-wood-floor-kitchen-cabinets-stove.jpg"><img src="img/04-wood-floor-kitchen-cabinets-stove.jpg" alt="Kitchen" loading="lazy"></a><figcaption>Kitchen</figcaption></figure>
+      <figure><a href="img/05-kitchen-floor-cabinets.jpg"><img src="img/05-kitchen-floor-cabinets.jpg" alt="Kitchen" loading="lazy"></a><figcaption>Kitchen</figcaption></figure>
+      <figure><a href="img/06-wooden-door-chalkboard.jpg"><img src="img/06-wooden-door-chalkboard.jpg" alt="Entry" loading="lazy"></a><figcaption>Entry</figcaption></figure>
+      <figure><a href="img/07-kitchenette-sink-granite.jpg"><img src="img/07-kitchenette-sink-granite.jpg" alt="Kitchen" loading="lazy"></a><figcaption>Kitchen</figcaption></figure>
+      <figure><a href="img/08-kitchen-floor-paint-can.jpg"><img src="img/08-kitchen-floor-paint-can.jpg" alt="Kitchen" loading="lazy"></a><figcaption>Kitchen — paint can to remove</figcaption></figure>
+      <figure><a href="img/09-kitchen-fridge-stove-cabinets.jpg"><img src="img/09-kitchen-fridge-stove-cabinets.jpg" alt="Kitchen" loading="lazy"></a><figcaption>Kitchen</figcaption></figure>
+      <figure><a href="img/10-bathroom-door-sink-mirror.jpg"><img src="img/10-bathroom-door-sink-mirror.jpg" alt="Bathroom" loading="lazy"></a><figcaption>Bathroom</figcaption></figure>
+      <figure><a href="img/11-bathroom-toilet-sink-vanity.jpg"><img src="img/11-bathroom-toilet-sink-vanity.jpg" alt="Bathroom" loading="lazy"></a><figcaption>Bathroom</figcaption></figure>
+      <figure><a href="img/12-laundry-closet-washer.jpg"><img src="img/12-laundry-closet-washer.jpg" alt="Laundry" loading="lazy"></a><figcaption>Laundry</figcaption></figure>
+      <figure><a href="img/13-bathroom-wide.jpg"><img src="img/13-bathroom-wide.jpg" alt="Bathroom" loading="lazy"></a><figcaption>Bathroom</figcaption></figure>
+      <figure><a href="img/14-hallway-furnace-closets.jpg"><img src="img/14-hallway-furnace-closets.jpg" alt="Hallway" loading="lazy"></a><figcaption>Hallway</figcaption></figure>
+      <figure><a href="img/15-living-room-sofas-rug.jpg"><img src="img/15-living-room-sofas-rug.jpg" alt="Living room" loading="lazy"></a><figcaption>Living room</figcaption></figure>
+      <figure><a href="img/16-bathroom-vanity-closeup.jpg"><img src="img/16-bathroom-vanity-closeup.jpg" alt="Bathroom" loading="lazy"></a><figcaption>Bathroom</figcaption></figure>
+      <figure><a href="img/17-bedroom-plastic-covered-bed.jpg"><img src="img/17-bedroom-plastic-covered-bed.jpg" alt="Bedroom" loading="lazy"></a><figcaption>Bedroom — plastic still on bed</figcaption></figure>
     </div>
   </section>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Photo enlarged">
+    <img id="lightbox-img" src="" alt="">
+    <p id="lightbox-cap"></p>
+  </div>
+  <script>
+    (function(){
+      var box=document.getElementById('lightbox'),img=document.getElementById('lightbox-img'),cap=document.getElementById('lightbox-cap');
+      document.querySelectorAll('.gallery a').forEach(function(a){
+        a.addEventListener('click',function(e){
+          e.preventDefault();
+          img.src=a.getAttribute('href');
+          var c=a.parentElement.querySelector('figcaption');
+          cap.textContent=c?c.textContent:'';
+          box.classList.add('open');
+        });
+      });
+      function close(){box.classList.remove('open');img.src='';}
+      box.addEventListener('click',close);
+      document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+    })();
+  </script>
 
   <section class="card">
     <h2>Please quote</h2>
