@@ -65,6 +65,25 @@
   .submitbtn:hover{background:#166534}
   .thanks{display:none;background:#eef6ee;border:1.5px solid #15803d;border-radius:12px;padding:16px;font-size:17px;text-align:center;color:#14532d;margin-bottom:16px}
   .thanks.show{display:block}
+  .wiz-progress{margin-bottom:18px}
+  .wiz-progress span{font-size:13px;font-weight:600;color:#6b7280;letter-spacing:.02em}
+  .wiz-bar{height:8px;background:#e8ede4;border-radius:999px;margin-top:6px;overflow:hidden}
+  .wiz-fill{height:100%;width:0;background:#15803d;border-radius:999px;transition:width .25s ease}
+  form.quote .step{display:none}
+  form.quote .step.active{display:block}
+  form.quote .step label{margin-top:12px}
+  .q{font-size:20px;font-weight:700;color:#111827;margin:2px 0 4px;text-wrap:balance}
+  .helper{font-size:14px;color:#4b5563;margin:4px 0 2px}
+  .wiz-nav{display:flex;gap:10px;margin-top:20px}
+  .wizbtn{font:inherit;font-weight:700;font-size:16px;padding:14px 22px;border-radius:999px;cursor:pointer;border:0;min-height:52px}
+  .wizbtn.next,.wizbtn.submit{background:#15803d;color:#fff;flex:1}
+  .wizbtn.next:hover,.wizbtn.submit:hover{background:#166534}
+  .wizbtn.back{background:#fff;color:#14532d;border:1.5px solid #15803d}
+  .wiz-err{color:#b91c1c;font-weight:600;font-size:15px;margin:14px 0 0}
+  .rev-item{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:11px 0;border-bottom:1px solid #eef0ea}
+  .rev-item b{display:block;font-size:13px;color:#6b7280;font-weight:600}
+  .rev-item span{font-size:16px;color:#111827;overflow-wrap:anywhere}
+  .rev-edit{background:#eef6ee;color:#14532d;border:1.5px solid #15803d;border-radius:999px;font:inherit;font-weight:600;font-size:14px;padding:7px 16px;cursor:pointer;flex-shrink:0}
   footer{text-align:center;color:#6b7280;font-size:13px;padding:10px 0 0}
   @media (max-width:520px){.card{padding:16px}.map iframe{height:260px}.lb-prev{left:4px}.lb-next{right:4px}}
 </style>
@@ -75,7 +94,7 @@
   <header>
     <h1>Sharingwood Unit&nbsp;1B — Cleanup for Rental&nbsp;Showing</h1>
     <p class="subtitle">Clean it, tidy it, make it shine</p>
-    <p class="stamp">v1.4 · Nov 18, 2026</p>
+    <p class="stamp">v1.5 · Nov 18, 2026</p>
   </header>
 
   <section class="card">
@@ -190,73 +209,138 @@
     <h2>Get a quote — fill this in</h2>
     <div class="thanks" id="thanks"><b>Thanks — your quote was sent.</b><br>We'll be in touch today.</div>
     <p class="note">Fill this in and it comes straight to us by email. The owner is remote — access is easy, the upstairs tenants can let you in.</p>
-    <form class="quote" action="https://formsubmit.co/hulrah2000@gmail.com" method="POST">
+    <form class="quote" id="wiz" action="https://formsubmit.co/hulrah2000@gmail.com" method="POST" novalidate>
       <input type="hidden" name="_subject" value="Sharingwood cleanup quote">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="true">
       <input type="hidden" name="_next" value="https://alpacaplayhouse.com/muse/sharingwood-cleanup/?sent=1">
-      <div class="twocol">
+
+      <div class="wiz-progress"><span id="wiz-step-label">Question 1 of 13</span><div class="wiz-bar"><div class="wiz-fill" id="wiz-fill"></div></div></div>
+
+      <div class="step active" data-step="0">
+        <p class="q">Your name</p>
         <label>Your name
-          <input type="text" name="Name" required autocomplete="name">
+          <input type="text" name="Name" id="f-name" required autocomplete="name">
         </label>
         <label>Business name <span class="opt">(optional)</span>
-          <input type="text" name="Business name" autocomplete="organization">
+          <input type="text" name="Business name" id="f-biz" autocomplete="organization">
         </label>
       </div>
-      <div class="twocol">
-        <label>Phone
-          <input type="tel" name="Phone" required autocomplete="tel">
-        </label>
-        <label>Email
-          <input type="email" name="Email" required autocomplete="email">
-        </label>
-      </div>
-      <label>Your quote — flat price, or hourly rate + estimated hours + estimated total
-        <textarea name="Quote" required placeholder="e.g. $250 flat, or $50/hr × ~4 hrs ≈ $200"></textarea>
-      </label>
-      <div>
-        <span class="flabel">Earliest day you could do it</span>
+
+      <div class="step" data-step="1">
+        <p class="q">Could you do the job on Thursday Nov 19 or Friday Nov 20?</p>
         <span class="radios">
-          <label><input type="radio" name="Earliest day" value="Thursday Nov 19" required>Thursday Nov 19</label>
-          <label><input type="radio" name="Earliest day" value="Friday Nov 20">Friday Nov 20</label>
-          <label><input type="radio" name="Earliest day" value="Another day (see notes)">Another day — say which below</label>
+          <label><input type="radio" name="Preferred day" value="Thursday Nov 19">Thursday Nov 19</label>
+          <label><input type="radio" name="Preferred day" value="Friday Nov 20">Friday Nov 20</label>
+          <label><input type="radio" name="Preferred day" value="Another day">Another day</label>
+        </span>
+        <label>If another day, which day?
+          <input type="text" name="Another day (which)" id="f-otherday" placeholder="e.g. Saturday Nov 21, morning">
+        </label>
+      </div>
+
+      <div class="step" data-step="2">
+        <p class="q">How long do you estimate the job will take?</p>
+        <p class="helper">An estimate is fine — it does not have to be exact.</p>
+        <label>Estimated time
+          <input type="text" name="Estimated time" id="f-time" placeholder="e.g. about 3 hours, maybe 4 if the kitchen is bad">
+        </label>
+      </div>
+
+      <div class="step" data-step="3">
+        <p class="q">What is your estimated total cost?</p>
+        <p class="helper">An estimate is fine — it does not have to be exact. A flat price is great, or an hourly rate and the estimated total.</p>
+        <label>Estimated total cost
+          <input type="text" name="Estimated total cost" id="f-cost" placeholder="e.g. $250 flat, or $50/hr, about $200 total">
+        </label>
+      </div>
+
+      <div class="step" data-step="4">
+        <p class="q">How many people would come?</p>
+        <label>People coming
+          <input type="text" name="People coming" id="f-people" placeholder="e.g. just me, or 2 of us">
+        </label>
+      </div>
+
+      <div class="step" data-step="5">
+        <p class="q">How much can you lift comfortably?</p>
+        <p class="helper">Some furniture may need moving around to arrange the rooms.</p>
+        <label>Lifting capacity
+          <input type="text" name="Lifting capacity" id="f-lift" placeholder="e.g. 50 lbs, or fine with sofas">
+        </label>
+      </div>
+
+      <div class="step" data-step="6">
+        <p class="q">Do you bring your own cleaning supplies?</p>
+        <span class="radios">
+          <label><input type="radio" name="Brings own supplies" value="Yes">Yes</label>
+          <label><input type="radio" name="Brings own supplies" value="No">No</label>
         </span>
       </div>
-      <div class="twocol">
-        <label>How many people would come?
-          <input type="number" name="People coming" min="1" max="20" inputmode="numeric" placeholder="e.g. 1">
-        </label>
-        <label>Some furniture may need moving around — how much can you lift comfortably?
-          <input type="text" name="Lifting capacity" placeholder="e.g. 50 lbs, or fine with sofas">
+
+      <div class="step" data-step="7">
+        <p class="q">Are you insured / bonded?</p>
+        <span class="radios">
+          <label><input type="radio" name="Insured bonded" value="Yes">Yes</label>
+          <label><input type="radio" name="Insured bonded" value="No">No</label>
+        </span>
+      </div>
+
+      <div class="step" data-step="8">
+        <p class="q">Do you have a good sense of how to arrange things to make a place look great for showing?</p>
+        <span class="radios">
+          <label><input type="radio" name="Arranging sense" value="Yes">Yes</label>
+          <label><input type="radio" name="Arranging sense" value="No">No</label>
+        </span>
+        <label>Any experience doing that? <span class="opt">(optional)</span>
+          <textarea name="Arranging experience note" id="f-arrnote" placeholder="Tell us briefly"></textarea>
         </label>
       </div>
-      <div class="twocol">
-        <label>Do you bring your own cleaning supplies?
-          <select name="Brings own supplies">
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
-        </label>
-        <label>Are you insured / bonded?
-          <select name="Insured bonded">
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
+
+      <div class="step" data-step="9">
+        <p class="q">Where can we see reviews or testimonials about you?</p>
+        <p class="helper">Paste a link — Google, Yelp, your profile, etc. Skip this if you don't have one.</p>
+        <label>Reviews link <span class="opt">(optional)</span>
+          <input type="text" name="Reviews links" id="f-reviews" placeholder="https://…">
         </label>
       </div>
-      <label>Do you have a good sense of how to arrange things to make a place look great for showing? Any experience doing that?
-        <textarea name="Arranging experience" placeholder="Tell us briefly"></textarea>
-      </label>
-      <label>Where can we see reviews or testimonials about you? Paste link(s) — Google, Yelp, your profile, etc.
-        <input type="text" name="Reviews links" placeholder="https://…">
-      </label>
-      <label>Best number and time for a quick call today or tomorrow
-        <input type="text" name="Best call time" placeholder="e.g. (425) 555-0100, today after 3pm">
-      </label>
-      <label>Anything else <span class="opt">(optional)</span>
-        <textarea name="Anything else"></textarea>
-      </label>
-      <button class="submitbtn" type="submit">Send my quote</button>
+
+      <div class="step" data-step="10">
+        <p class="q">What's the best phone number for you, and a good time for a quick call today or tomorrow?</p>
+        <label>Phone
+          <input type="tel" name="Phone" id="f-phone" required autocomplete="tel">
+        </label>
+        <label>Good time for a quick call
+          <input type="text" name="Best call time" id="f-calltime" placeholder="e.g. today after 3pm">
+        </label>
+      </div>
+
+      <div class="step" data-step="11">
+        <p class="q">Your email, so we can reply</p>
+        <label>Email
+          <input type="email" name="email" id="f-email" required autocomplete="email">
+        </label>
+      </div>
+
+      <div class="step" data-step="12">
+        <p class="q">Anything else?</p>
+        <label>Anything else <span class="opt">(optional)</span>
+          <textarea name="Anything else" id="f-notes"></textarea>
+        </label>
+      </div>
+
+      <div class="step" data-step="13" id="review-step">
+        <p class="q">Review your answers</p>
+        <p class="helper">Check everything looks right. Tap Edit to change any answer, then send.</p>
+        <div id="review-list"></div>
+      </div>
+
+      <p class="wiz-err" id="wiz-err" hidden>Please answer this question to continue.</p>
+      <div class="wiz-nav">
+        <button type="button" class="wizbtn back" id="wiz-back" hidden>← Back</button>
+        <button type="button" class="wizbtn next" id="wiz-next">Next →</button>
+        <button type="submit" class="wizbtn submit" id="wiz-submit" hidden>Send my quote</button>
+      </div>
     </form>
   </section>
   <script>
@@ -268,6 +352,94 @@
       }
     })();
   </script>
+  <script>
+    (function(){
+      var form=document.getElementById('wiz');
+      var steps=Array.prototype.slice.call(form.querySelectorAll('.step'));
+      var TOTAL=steps.length-1; // last step is the review
+      var cur=0;
+      var backBtn=document.getElementById('wiz-back'),
+          nextBtn=document.getElementById('wiz-next'),
+          subBtn=document.getElementById('wiz-submit'),
+          err=document.getElementById('wiz-err'),
+          label=document.getElementById('wiz-step-label'),
+          fill=document.getElementById('wiz-fill');
+      function val(id){var el=document.getElementById(id);return el?el.value.trim():'';}
+      function radio(name){var el=form.querySelector('input[name="'+name+'"]:checked');return el?el.value:'';}
+      function stepValid(i){
+        switch(i){
+          case 0: return val('f-name')!=='';
+          case 1: var d=radio('Preferred day'); if(!d)return false; if(d==='Another day')return val('f-otherday')!==''; return true;
+          case 2: return val('f-time')!=='';
+          case 3: return val('f-cost')!=='';
+          case 4: return val('f-people')!=='';
+          case 5: return val('f-lift')!=='';
+          case 6: return radio('Brings own supplies')!=='';
+          case 7: return radio('Insured bonded')!=='';
+          case 8: return radio('Arranging sense')!=='';
+          case 9: return true;
+          case 10: return val('f-phone')!==''&&val('f-calltime')!=='';
+          case 11: var e=val('f-email'); return e!==''&&/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e);
+          case 12: return true;
+        }
+        return true;
+      }
+      var QA=[
+        {s:0,q:'Your name',a:function(){var n=val('f-name');var b=val('f-biz');return b?n+' — '+b:n;}},
+        {s:1,q:'Could you do Thu Nov 19 or Fri Nov 20?',a:function(){var d=radio('Preferred day');return d==='Another day'?('Another day: '+val('f-otherday')):d;}},
+        {s:2,q:'Estimated time',a:function(){return val('f-time');}},
+        {s:3,q:'Estimated total cost',a:function(){return val('f-cost');}},
+        {s:4,q:'People coming',a:function(){return val('f-people');}},
+        {s:5,q:'Lifting capacity',a:function(){return val('f-lift');}},
+        {s:6,q:'Brings own supplies?',a:function(){return radio('Brings own supplies');}},
+        {s:7,q:'Insured / bonded?',a:function(){return radio('Insured bonded');}},
+        {s:8,q:'Good sense of arranging for showing?',a:function(){var v=radio('Arranging sense');var n=val('f-arrnote');return n?v+' — '+n:v;}},
+        {s:9,q:'Reviews / testimonials link',a:function(){return val('f-reviews')||'—';}},
+        {s:10,q:'Best phone + call time',a:function(){return val('f-phone')+' · '+val('f-calltime');}},
+        {s:11,q:'Email',a:function(){return val('f-email');}},
+        {s:12,q:'Anything else',a:function(){return val('f-notes')||'—';}}
+      ];
+      function buildReview(){
+        var list=document.getElementById('review-list');list.innerHTML='';
+        QA.forEach(function(item){
+          var row=document.createElement('div');row.className='rev-item';
+          var txt=document.createElement('div');
+          var qq=document.createElement('b');qq.textContent=item.q;
+          var aa=document.createElement('span');aa.textContent=item.a();
+          txt.appendChild(qq);txt.appendChild(aa);
+          var ed=document.createElement('button');ed.type='button';ed.className='rev-edit';ed.textContent='Edit';
+          ed.addEventListener('click',function(){go(item.s);});
+          row.appendChild(txt);row.appendChild(ed);
+          list.appendChild(row);
+        });
+      }
+      function go(i){
+        cur=i;
+        steps.forEach(function(s,j){s.classList.toggle('active',j===i);});
+        err.hidden=true;
+        backBtn.hidden=(i===0);
+        var isReview=(i===TOTAL);
+        nextBtn.hidden=isReview;
+        subBtn.hidden=!isReview;
+        nextBtn.textContent=(i===TOTAL-1)?'Review answers →':'Next →';
+        label.textContent=isReview?'Review your answers':('Question '+(i+1)+' of '+TOTAL);
+        fill.style.width=((i)/TOTAL*100)+'%';
+        if(isReview)buildReview();
+        document.getElementById('quote').scrollIntoView({block:'start',behavior:'smooth'});
+      }
+      nextBtn.addEventListener('click',function(){
+        if(!stepValid(cur)){err.hidden=false;return;}
+        go(cur+1);
+      });
+      backBtn.addEventListener('click',function(){if(cur>0)go(cur-1);});
+      form.addEventListener('submit',function(e){
+        for(var i=0;i<TOTAL;i++){if(!stepValid(i)){e.preventDefault();go(i);err.hidden=false;return;}}
+      });
+      form.addEventListener('input',function(){err.hidden=true;});
+      go(0);
+    })();
+  </script>
+
 
   <section class="card map">
     <h2>Where it is</h2>
