@@ -19,15 +19,15 @@
   .fact{background:#eef6ee;border-radius:12px;padding:12px;text-align:center}
   .fact b{display:block;font-size:18px;color:#14532d}
   .fact span{font-size:13px;color:#4b5563}
+  .goal{margin:16px 0 0;background:#fff7ed;border:1.5px solid #f59e0b;border-radius:12px;padding:14px 16px;font-size:18px;text-align:center;color:#111827}
+  .goal a{color:#9a3412;font-weight:700}
+  .addr a{color:#14532d;text-decoration:underline;text-underline-offset:3px}
   h2{margin:0 0 12px;font-size:21px;color:#14532d;text-wrap:balance}
   ul.check{list-style:none;margin:0;padding:0}
   ul.check li{position:relative;padding:10px 10px 10px 38px;border-bottom:1px solid #eef0ea;font-size:16px;text-wrap:pretty}
   ul.check li:last-child{border-bottom:0}
   ul.check li::before{content:"☐";position:absolute;left:8px;top:8px;font-size:20px;color:#15803d}
   ul.check li b{color:#111827}
-  .quote-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
-  .quote-grid div{background:#fff7ed;border-radius:12px;padding:12px;font-size:15px}
-  .quote-grid b{display:block;color:#9a3412;margin-bottom:2px}
   p{margin:8px 0;text-wrap:pretty}
   .note{font-size:14px;color:#4b5563}
   .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
@@ -35,16 +35,38 @@
   .gallery a{display:block;border-radius:12px;overflow:hidden}
   .gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
   .gallery figcaption{font-size:13px;color:#4b5563;padding:5px 2px 0;text-wrap:pretty}
-  .lightbox{position:fixed;inset:0;background:rgba(10,15,10,.92);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:50;padding:16px;cursor:zoom-out}
-  .lightbox.open{display:flex}
-  .lightbox img{max-width:96vw;max-height:84vh;border-radius:10px}
-  .lightbox p{color:#e5e7eb;margin:10px 0 0;font-size:15px;text-align:center}
+  .lightbox{position:fixed;inset:0;background:rgba(10,15,10,.94);display:none;z-index:50}
+  .lightbox.open{display:block}
+  .lightbox figure{position:absolute;inset:0;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:52px 12px 16px}
+  .lightbox img{max-width:96vw;max-height:80vh;border-radius:10px;object-fit:contain}
+  .lightbox figcaption{color:#e5e7eb;margin-top:12px;font-size:15px;text-align:center}
+  .lightbox .count{color:#9ca3af;font-size:13px;margin-top:2px}
+  .lb-btn{position:absolute;background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:999px;width:46px;height:46px;font-size:24px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
+  .lb-btn:hover,.lb-btn:focus{background:rgba(255,255,255,.28);outline:none}
+  .lb-close{top:12px;right:12px;font-size:20px}
+  .lb-prev{left:10px;top:50%;transform:translateY(-50%)}
+  .lb-next{right:10px;top:50%;transform:translateY(-50%)}
   .map iframe{width:100%;height:320px;max-height:400px;border:0;border-radius:12px;display:block}
   .btn{display:inline-block;margin-top:12px;background:#15803d;color:#fff;text-decoration:none;font-weight:700;padding:11px 18px;border-radius:999px;font-size:15px}
   .btn.secondary{background:#fff;color:#14532d;border:1.5px solid #15803d}
   .links{display:flex;flex-wrap:wrap;gap:10px}
+  form.quote{display:grid;gap:14px;margin-top:6px}
+  form.quote label,form.quote .flabel{display:block;font-weight:600;font-size:15px;color:#111827}
+  form.quote label .opt{font-weight:400;color:#6b7280;font-size:13px}
+  form.quote input[type=text],form.quote input[type=tel],form.quote input[type=email],form.quote input[type=number],form.quote select,form.quote textarea{width:100%;margin-top:5px;padding:11px 12px;font:inherit;font-size:16px;color:#1c2a22;background:#fff;border:1.5px solid #cbd5c4;border-radius:10px}
+  form.quote input:focus,form.quote select:focus,form.quote textarea:focus{border-color:#15803d;outline:2px solid rgba(21,128,61,.25)}
+  form.quote textarea{min-height:84px;resize:vertical}
+  .radios{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .radios label{font-weight:500;background:#f3f6f1;border:1.5px solid #d7ded2;border-radius:999px;padding:8px 14px;cursor:pointer;font-size:15px}
+  .radios input{margin-right:6px;accent-color:#15803d}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:560px){.twocol{grid-template-columns:1fr}}
+  .submitbtn{background:#15803d;color:#fff;border:0;font:inherit;font-weight:700;font-size:17px;padding:14px 20px;border-radius:999px;cursor:pointer;width:100%}
+  .submitbtn:hover{background:#166534}
+  .thanks{display:none;background:#eef6ee;border:1.5px solid #15803d;border-radius:12px;padding:16px;font-size:17px;text-align:center;color:#14532d;margin-bottom:16px}
+  .thanks.show{display:block}
   footer{text-align:center;color:#6b7280;font-size:13px;padding:10px 0 0}
-  @media (max-width:520px){.card{padding:16px}.map iframe{height:260px}}
+  @media (max-width:520px){.card{padding:16px}.map iframe{height:260px}.lb-prev{left:4px}.lb-next{right:4px}}
 </style>
 </head>
 <body>
@@ -53,13 +75,14 @@
   <header>
     <h1>Sharingwood Unit&nbsp;1B — Cleanup for Rental&nbsp;Showing</h1>
     <p class="subtitle">Clean it, tidy it, make it shine</p>
-    <p class="stamp">v1.2 · Nov 18, 2026</p>
+    <p class="stamp">v1.3 · Nov 18, 2026</p>
   </header>
 
   <section class="card">
     <h2>The job</h2>
-    <p><b>22003 E Lost Lake Rd, Unit 1B, Snohomish, WA 98296</b></p>
+    <p class="addr"><b><a href="https://www.google.com/maps/search/?api=1&query=22003+E+Lost+Lake+Rd+Snohomish+WA+98296">22003 E Lost Lake Rd, Unit 1B, Snohomish, WA 98296</a></b></p>
     <p>Furnished basement rental, recently renovated. It needs a cleanup and light staging so it looks great for rental showings.</p>
+    <p class="goal"><b>Goal:</b> make it look like the <a href="https://alpacaplayhouse.com/sharingwood/rentals/unit1b/">rental listing pictures</a></p>
     <div class="facts">
       <div class="fact"><b>1 bed / 1 bath</b><span>Furnished</span></div>
       <div class="fact"><b>~1,200 sq ft</b><span>Basement unit</span></div>
@@ -81,6 +104,7 @@
       <li><b>Dust everything:</b> surfaces, baseboards, and window sills</li>
       <li><b>Glass:</b> clean windows and mirrors</li>
       <li><b>Tidy + light staging:</b> clear the counters, arrange furniture neatly, make the bed look fresh, put out fresh towels</li>
+      <li><b>Move furniture:</b> some furniture may need moving around to arrange the rooms</li>
       <li><b>Entry:</b> make the first impression welcoming</li>
       <li><b>Photos:</b> take before-and-after photos and send them when done</li>
     </ul>
@@ -110,38 +134,139 @@
     </div>
   </section>
 
-  <div class="lightbox" id="lightbox" role="dialog" aria-label="Photo enlarged">
-    <img id="lightbox-img" src="" alt="">
-    <p id="lightbox-cap"></p>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <figure>
+      <img id="lightbox-img" src="" alt="">
+      <figcaption id="lightbox-cap"></figcaption>
+      <div class="count" id="lightbox-count"></div>
+    </figure>
+    <button class="lb-btn lb-close" id="lb-close" aria-label="Close">✕</button>
+    <button class="lb-btn lb-prev" id="lb-prev" aria-label="Previous photo">‹</button>
+    <button class="lb-btn lb-next" id="lb-next" aria-label="Next photo">›</button>
   </div>
   <script>
     (function(){
-      var box=document.getElementById('lightbox'),img=document.getElementById('lightbox-img'),cap=document.getElementById('lightbox-cap');
-      document.querySelectorAll('.gallery a').forEach(function(a){
-        a.addEventListener('click',function(e){
-          e.preventDefault();
-          img.src=a.getAttribute('href');
-          var c=a.parentElement.querySelector('figcaption');
-          cap.textContent=c?c.textContent:'';
-          box.classList.add('open');
-        });
+      var box=document.getElementById('lightbox'),
+          img=document.getElementById('lightbox-img'),
+          cap=document.getElementById('lightbox-cap'),
+          count=document.getElementById('lightbox-count'),
+          links=Array.prototype.slice.call(document.querySelectorAll('.gallery a')),
+          idx=0, startX=null;
+      function show(i){
+        idx=(i+links.length)%links.length;
+        var a=links[idx];
+        img.src=a.getAttribute('href');
+        var c=a.parentElement.querySelector('figcaption');
+        var label=c?c.textContent:'';
+        cap.textContent=label;
+        img.alt=label;
+        count.textContent=(idx+1)+' / '+links.length;
+      }
+      function open(i){show(i);box.classList.add('open');document.body.style.overflow='hidden';}
+      function close(){box.classList.remove('open');img.src='';document.body.style.overflow='';}
+      links.forEach(function(a,i){a.addEventListener('click',function(e){e.preventDefault();open(i);});});
+      document.getElementById('lb-close').addEventListener('click',function(e){e.stopPropagation();close();});
+      document.getElementById('lb-prev').addEventListener('click',function(e){e.stopPropagation();show(idx-1);});
+      document.getElementById('lb-next').addEventListener('click',function(e){e.stopPropagation();show(idx+1);});
+      box.addEventListener('click',function(e){if(e.target===box||e.target.tagName==='FIGURE')close();});
+      document.addEventListener('keydown',function(e){
+        if(!box.classList.contains('open'))return;
+        if(e.key==='Escape')close();
+        else if(e.key==='ArrowLeft')show(idx-1);
+        else if(e.key==='ArrowRight')show(idx+1);
       });
-      function close(){box.classList.remove('open');img.src='';}
-      box.addEventListener('click',close);
-      document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+      box.addEventListener('touchstart',function(e){startX=e.changedTouches[0].clientX;},{passive:true});
+      box.addEventListener('touchend',function(e){
+        if(startX===null)return;
+        var dx=e.changedTouches[0].clientX-startX;
+        if(Math.abs(dx)>45)show(idx+(dx<0?1:-1));
+        startX=null;
+      },{passive:true});
     })();
   </script>
 
-  <section class="card">
-    <h2>Please quote</h2>
-    <div class="quote-grid">
-      <div><b>Your price</b>Flat quote, or your hourly rate</div>
-      <div><b>Earliest availability</b>The first day you could do it</div>
-      <div><b>Supplies</b>Do you bring your own?</div>
-      <div><b>Coverage</b>Are you insured / bonded?</div>
-    </div>
-    <p class="note">The owner is remote. Access will be arranged with the person chosen for the job.</p>
+  <section class="card" id="quote">
+    <h2>Get a quote — fill this in</h2>
+    <div class="thanks" id="thanks"><b>Thanks — your quote was sent.</b><br>We'll be in touch today.</div>
+    <p class="note">Fill this in and it comes straight to us by email. The owner is remote — access is easy, the upstairs tenants can let you in.</p>
+    <form class="quote" action="https://formsubmit.co/rahulioson@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Sharingwood cleanup quote">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="true">
+      <input type="hidden" name="_next" value="https://alpacaplayhouse.com/muse/sharingwood-cleanup/?sent=1">
+      <div class="twocol">
+        <label>Your name
+          <input type="text" name="Name" required autocomplete="name">
+        </label>
+        <label>Business name <span class="opt">(optional)</span>
+          <input type="text" name="Business name" autocomplete="organization">
+        </label>
+      </div>
+      <div class="twocol">
+        <label>Phone
+          <input type="tel" name="Phone" required autocomplete="tel">
+        </label>
+        <label>Email
+          <input type="email" name="Email" required autocomplete="email">
+        </label>
+      </div>
+      <label>Your quote — flat price, or hourly rate + estimated hours + estimated total
+        <textarea name="Quote" required placeholder="e.g. $250 flat, or $50/hr × ~4 hrs ≈ $200"></textarea>
+      </label>
+      <div>
+        <span class="flabel">Earliest day you could do it</span>
+        <span class="radios">
+          <label><input type="radio" name="Earliest day" value="Thursday Nov 19" required>Thursday Nov 19</label>
+          <label><input type="radio" name="Earliest day" value="Friday Nov 20">Friday Nov 20</label>
+          <label><input type="radio" name="Earliest day" value="Another day (see notes)">Another day — say which below</label>
+        </span>
+      </div>
+      <div class="twocol">
+        <label>How many people would come?
+          <input type="number" name="People coming" min="1" max="20" inputmode="numeric" placeholder="e.g. 1">
+        </label>
+        <label>Some furniture may need moving around — how much can you lift comfortably?
+          <input type="text" name="Lifting capacity" placeholder="e.g. 50 lbs, or fine with sofas">
+        </label>
+      </div>
+      <div class="twocol">
+        <label>Do you bring your own cleaning supplies?
+          <select name="Brings own supplies">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </label>
+        <label>Are you insured / bonded?
+          <select name="Insured bonded">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </label>
+      </div>
+      <label>Do you have a good sense of how to arrange things to make a place look great for showing? Any experience doing that?
+        <textarea name="Arranging experience" placeholder="Tell us briefly"></textarea>
+      </label>
+      <label>Where can we see reviews or testimonials about you? Paste link(s) — Google, Yelp, your profile, etc.
+        <input type="text" name="Reviews links" placeholder="https://…">
+      </label>
+      <label>Best number and time for a quick call today or tomorrow
+        <input type="text" name="Best call time" placeholder="e.g. (425) 555-0100, today after 3pm">
+      </label>
+      <label>Anything else <span class="opt">(optional)</span>
+        <textarea name="Anything else"></textarea>
+      </label>
+      <button class="submitbtn" type="submit">Send my quote</button>
+    </form>
   </section>
+  <script>
+    (function(){
+      if(new URLSearchParams(window.location.search).get('sent')==='1'){
+        var t=document.getElementById('thanks');
+        t.classList.add('show');
+        t.scrollIntoView({block:'center'});
+      }
+    })();
+  </script>
 
   <section class="card map">
     <h2>Where it is</h2>
